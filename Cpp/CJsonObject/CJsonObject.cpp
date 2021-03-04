@@ -177,6 +177,56 @@ bool CJsonObject::GetKey(std::string& strKey)
     }
 }
 
+bool CJsonObject::HasKey(const std::string& strKey) const
+{
+    cJSONZJ* pJsonStruct = NULL;
+    if (m_pJsonData != NULL)
+    {
+        if (m_pJsonData->type == cJSONZJ_Object)
+        {
+            pJsonStruct = cJSONZJ_GetObjectItem(m_pJsonData, strKey.c_str());
+        }
+    }
+    else if (m_pExternJsonDataRef != NULL)
+    {
+        if(m_pExternJsonDataRef->type == cJSONZJ_Object)
+        {
+            pJsonStruct = cJSONZJ_GetObjectItem(m_pExternJsonDataRef, strKey.c_str());
+        }
+    }
+    if (pJsonStruct == NULL)
+    {
+        return(false);
+    }
+    
+    return true;
+}
+
+int CJsonObject::Type(const std::string& strKey) const
+{
+    cJSONZJ* pJsonStruct = NULL;
+    if (m_pJsonData != NULL)
+    {
+        if (m_pJsonData->type == cJSONZJ_Object)
+        {
+            pJsonStruct = cJSONZJ_GetObjectItem(m_pJsonData, strKey.c_str());
+        }
+    }
+    else if (m_pExternJsonDataRef != NULL)
+    {
+        if(m_pExternJsonDataRef->type == cJSONZJ_Object)
+        {
+            pJsonStruct = cJSONZJ_GetObjectItem(m_pExternJsonDataRef, strKey.c_str());
+        }
+    }
+    if (pJsonStruct == NULL)
+    {
+        return -1;
+    }
+    
+    return pJsonStruct->type;
+}
+
 CJsonObject& CJsonObject::operator[](const std::string& strKey)
 {
     std::map<std::string, CJsonObject*>::iterator iter;
@@ -490,32 +540,32 @@ bool CJsonObject::IsArray() const
     }
 }
 
-    bool CJsonObject::IsDictionary() const
+bool CJsonObject::IsDictionary() const
+{
+    cJSONZJ* pFocusData = NULL;
+    if (m_pJsonData != NULL)
     {
-        cJSONZJ* pFocusData = NULL;
-        if (m_pJsonData != NULL)
-        {
-            pFocusData = m_pJsonData;
-        }
-        else if (m_pExternJsonDataRef != NULL)
-        {
-            pFocusData = m_pExternJsonDataRef;
-        }
-
-        if (pFocusData == NULL)
-        {
-            return(false);
-        }
-
-        if (pFocusData->type == cJSONZJ_Object)
-        {
-            return(true);
-        }
-        else
-        {
-            return(false);
-        }
+        pFocusData = m_pJsonData;
     }
+    else if (m_pExternJsonDataRef != NULL)
+    {
+        pFocusData = m_pExternJsonDataRef;
+    }
+    
+    if (pFocusData == NULL)
+    {
+        return(false);
+    }
+    
+    if (pFocusData->type == cJSONZJ_Object)
+    {
+        return(true);
+    }
+    else
+    {
+        return(false);
+    }
+}
 
 std::string CJsonObject::ToString() const
 {
@@ -556,7 +606,6 @@ std::string CJsonObject::ToFormattedString() const
     }
     return(strJsonData);
 }
-
 
 bool CJsonObject::Get(const std::string& strKey, CJsonObject& oJsonObject) const
 {
@@ -1791,7 +1840,7 @@ bool CJsonObject::Get(int iWhich, bool& bValue) const
     {
         return(false);
     }
-    bValue = pJsonStruct->type;
+    bValue = pJsonStruct->type == cJSONZJ_True;
     return(true);
 }
 
@@ -2124,7 +2173,7 @@ bool CJsonObject::Add(uint64 ullValue)
     return(true);
 }
 
-bool CJsonObject::Add(int iAnywhere, bool bValue)
+bool CJsonObject::Add(bool bValue, bool bValueAgain)
 {
     cJSONZJ* pFocusData = NULL;
     if (m_pJsonData != NULL)
@@ -2513,7 +2562,7 @@ bool CJsonObject::AddAsFirst(uint64 ullValue)
     return(true);
 }
 
-bool CJsonObject::AddAsFirst(int iAnywhere, bool bValue)
+bool CJsonObject::AddAsFirst(bool bValue, bool bValueAgain)
 {
     cJSONZJ* pFocusData = NULL;
     if (m_pJsonData != NULL)

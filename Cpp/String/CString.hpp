@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "CDefType.hpp"
 
 ZJ_NAMESPACE_TOOL_BEGIN

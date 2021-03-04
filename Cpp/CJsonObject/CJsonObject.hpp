@@ -65,6 +65,8 @@ public:     // method of ordinary json object
     bool AddEmptySubObject(const std::string& strKey);
     bool AddEmptySubArray(const std::string& strKey);
     bool GetKey(std::string& strKey);
+    bool HasKey(const std::string& strKey) const;   //是否有Key
+    int Type(const std::string& strKey) const;   //类型
     CJsonObject& operator[](const std::string& strKey);
     std::string operator()(const std::string& strKey) const;
     bool Get(const std::string& strKey, CJsonObject& oJsonObject) const;
@@ -116,7 +118,7 @@ public:     // method of json array
     bool Add(uint32 uiValue);
     bool Add(int64 llValue);
     bool Add(uint64 ullValue);
-    bool Add(int iAnywhere, bool bValue);
+    bool Add(bool bValue, bool bValueAgain);   //bValue为占位用，否则bool类型可能转换为整形
     bool Add(float fValue);
     bool Add(double dValue);
     bool AddAsFirst(const CJsonObject& oJsonObject);
@@ -125,7 +127,7 @@ public:     // method of json array
     bool AddAsFirst(uint32 uiValue);
     bool AddAsFirst(int64 llValue);
     bool AddAsFirst(uint64 ullValue);
-    bool AddAsFirst(int iAnywhere, bool bValue);
+    bool AddAsFirst(bool bValue, bool bValueAgain);
     bool AddAsFirst(float fValue);
     bool AddAsFirst(double dValue);
     bool Delete(int iWhich);
