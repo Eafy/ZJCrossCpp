@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C9F014C25F074C6008E4CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F014B25F074C6008E4CE3 /* AppDelegate.m */; };
 		0C9F014F25F074C6008E4CE3 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F014E25F074C6008E4CE3 /* SceneDelegate.m */; };
-		0C9F015225F074C6008E4CE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F015125F074C6008E4CE3 /* ViewController.m */; };
+		0C9F015225F074C6008E4CE3 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F015125F074C6008E4CE3 /* ViewController.mm */; };
 		0C9F015525F074C6008E4CE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C9F015325F074C6008E4CE3 /* Main.storyboard */; };
 		0C9F015725F074C7008E4CE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C9F015625F074C7008E4CE3 /* Assets.xcassets */; };
 		0C9F015A25F074C7008E4CE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C9F015825F074C7008E4CE3 /* LaunchScreen.storyboard */; };
@@ -30,6 +30,13 @@
 		0C9F01B125F07531008E4CE3 /* CGLShaderYUV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F01A225F07531008E4CE3 /* CGLShaderYUV.cpp */; };
 		0C9F01B225F07531008E4CE3 /* CGLVideoFBO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F01A525F07531008E4CE3 /* CGLVideoFBO.cpp */; };
 		0C9F01CA25F08E2F008E4CE3 /* CString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F01C825F08E2F008E4CE3 /* CString.cpp */; };
+		0C9F032E25F23EF4008E4CE3 /* CNetRequestDownload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032425F23EF4008E4CE3 /* CNetRequestDownload.cpp */; };
+		0C9F032F25F23EF4008E4CE3 /* CNetRequestUpload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032525F23EF4008E4CE3 /* CNetRequestUpload.cpp */; };
+		0C9F033025F23EF4008E4CE3 /* CNetRequestPost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032825F23EF4008E4CE3 /* CNetRequestPost.cpp */; };
+		0C9F033125F23EF4008E4CE3 /* CNetRequestGet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032C25F23EF4008E4CE3 /* CNetRequestGet.cpp */; };
+		0C9F033225F23EF4008E4CE3 /* CNetRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */; };
+		0C9F033B25F23F6D008E4CE3 /* CJsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F033725F23F6D008E4CE3 /* CJsonObject.cpp */; };
+		0C9F033C25F23F6D008E4CE3 /* cJSONZJ.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */; };
 		80A76C25677E819FA4EB123C /* libPods-ZJCrossCppDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4638FB0FCAFCC446EB026B /* libPods-ZJCrossCppDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +64,7 @@
 		0C9F014D25F074C6008E4CE3 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0C9F014E25F074C6008E4CE3 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		0C9F015025F074C6008E4CE3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0C9F015125F074C6008E4CE3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0C9F015125F074C6008E4CE3 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		0C9F015425F074C6008E4CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C9F015625F074C7008E4CE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C9F015925F074C7008E4CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +106,20 @@
 		0C9F01A525F07531008E4CE3 /* CGLVideoFBO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLVideoFBO.cpp; sourceTree = "<group>"; };
 		0C9F01C825F08E2F008E4CE3 /* CString.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CString.cpp; sourceTree = "<group>"; };
 		0C9F01C925F08E2F008E4CE3 /* CString.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CString.hpp; sourceTree = "<group>"; };
+		0C9F032425F23EF4008E4CE3 /* CNetRequestDownload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestDownload.cpp; sourceTree = "<group>"; };
+		0C9F032525F23EF4008E4CE3 /* CNetRequestUpload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestUpload.cpp; sourceTree = "<group>"; };
+		0C9F032625F23EF4008E4CE3 /* CNetRequestGet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestGet.hpp; sourceTree = "<group>"; };
+		0C9F032725F23EF4008E4CE3 /* CNetRequestDownload.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestDownload.hpp; sourceTree = "<group>"; };
+		0C9F032825F23EF4008E4CE3 /* CNetRequestPost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestPost.cpp; sourceTree = "<group>"; };
+		0C9F032925F23EF4008E4CE3 /* CNetRequest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequest.hpp; sourceTree = "<group>"; };
+		0C9F032A25F23EF4008E4CE3 /* CNetRequestPost.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestPost.hpp; sourceTree = "<group>"; };
+		0C9F032B25F23EF4008E4CE3 /* CNetRequestUpload.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestUpload.hpp; sourceTree = "<group>"; };
+		0C9F032C25F23EF4008E4CE3 /* CNetRequestGet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestGet.cpp; sourceTree = "<group>"; };
+		0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequest.cpp; sourceTree = "<group>"; };
+		0C9F033725F23F6D008E4CE3 /* CJsonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CJsonObject.cpp; sourceTree = "<group>"; };
+		0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cJSONZJ.c; sourceTree = "<group>"; };
+		0C9F033925F23F6D008E4CE3 /* CJsonObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CJsonObject.hpp; sourceTree = "<group>"; };
+		0C9F033A25F23F6D008E4CE3 /* cJSONZJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cJSONZJ.h; sourceTree = "<group>"; };
 		395C8B3C1817639199957E2C /* Pods-ZJCrossCppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5C4638FB0FCAFCC446EB026B /* libPods-ZJCrossCppDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZJCrossCppDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D4F1C69D9F0377371C0E5C /* Pods-ZJCrossCppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.release.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,7 +182,7 @@
 				0C9F014D25F074C6008E4CE3 /* SceneDelegate.h */,
 				0C9F014E25F074C6008E4CE3 /* SceneDelegate.m */,
 				0C9F015025F074C6008E4CE3 /* ViewController.h */,
-				0C9F015125F074C6008E4CE3 /* ViewController.m */,
+				0C9F015125F074C6008E4CE3 /* ViewController.mm */,
 				0C9F015325F074C6008E4CE3 /* Main.storyboard */,
 				0C9F015625F074C7008E4CE3 /* Assets.xcassets */,
 				0C9F015825F074C7008E4CE3 /* LaunchScreen.storyboard */,
@@ -192,6 +213,7 @@
 		0C9F018525F07531008E4CE3 /* Cpp */ = {
 			isa = PBXGroup;
 			children = (
+				0C9F032325F23E90008E4CE3 /* Net */,
 				0C9F01C425F08E12008E4CE3 /* String */,
 				0C9F018925F07531008E4CE3 /* CLog.hpp */,
 				0C9F018F25F07531008E4CE3 /* CLog.cpp */,
@@ -200,6 +222,7 @@
 				0C9F018625F07531008E4CE3 /* FiFoList */,
 				0C9F018B25F07531008E4CE3 /* Timer */,
 				0C9F019025F07531008E4CE3 /* Thread */,
+				0C9F033625F23F6D008E4CE3 /* CJsonObject */,
 				0C9F019925F07531008E4CE3 /* OpenGL */,
 			);
 			name = Cpp;
@@ -265,6 +288,34 @@
 				0C9F01C925F08E2F008E4CE3 /* CString.hpp */,
 			);
 			path = String;
+			sourceTree = "<group>";
+		};
+		0C9F032325F23E90008E4CE3 /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */,
+				0C9F032925F23EF4008E4CE3 /* CNetRequest.hpp */,
+				0C9F032425F23EF4008E4CE3 /* CNetRequestDownload.cpp */,
+				0C9F032725F23EF4008E4CE3 /* CNetRequestDownload.hpp */,
+				0C9F032C25F23EF4008E4CE3 /* CNetRequestGet.cpp */,
+				0C9F032625F23EF4008E4CE3 /* CNetRequestGet.hpp */,
+				0C9F032825F23EF4008E4CE3 /* CNetRequestPost.cpp */,
+				0C9F032A25F23EF4008E4CE3 /* CNetRequestPost.hpp */,
+				0C9F032525F23EF4008E4CE3 /* CNetRequestUpload.cpp */,
+				0C9F032B25F23EF4008E4CE3 /* CNetRequestUpload.hpp */,
+			);
+			path = Net;
+			sourceTree = "<group>";
+		};
+		0C9F033625F23F6D008E4CE3 /* CJsonObject */ = {
+			isa = PBXGroup;
+			children = (
+				0C9F033725F23F6D008E4CE3 /* CJsonObject.cpp */,
+				0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */,
+				0C9F033925F23F6D008E4CE3 /* CJsonObject.hpp */,
+				0C9F033A25F23F6D008E4CE3 /* cJSONZJ.h */,
+			);
+			path = CJsonObject;
 			sourceTree = "<group>";
 		};
 		39239664E252E93DA25B29A7 /* Frameworks */ = {
@@ -444,8 +495,12 @@
 				0C9F01A825F07531008E4CE3 /* CLog.cpp in Sources */,
 				0C9F01A925F07531008E4CE3 /* CCondition.cpp in Sources */,
 				0C9F01B125F07531008E4CE3 /* CGLShaderYUV.cpp in Sources */,
-				0C9F015225F074C6008E4CE3 /* ViewController.m in Sources */,
+				0C9F032E25F23EF4008E4CE3 /* CNetRequestDownload.cpp in Sources */,
+				0C9F033C25F23F6D008E4CE3 /* cJSONZJ.c in Sources */,
+				0C9F033B25F23F6D008E4CE3 /* CJsonObject.cpp in Sources */,
+				0C9F015225F074C6008E4CE3 /* ViewController.mm in Sources */,
 				0C9F01A725F07531008E4CE3 /* CTimer.cpp in Sources */,
+				0C9F032F25F23EF4008E4CE3 /* CNetRequestUpload.cpp in Sources */,
 				0C9F014C25F074C6008E4CE3 /* AppDelegate.m in Sources */,
 				0C9F015D25F074C7008E4CE3 /* main.m in Sources */,
 				0C9F014F25F074C6008E4CE3 /* SceneDelegate.m in Sources */,
@@ -455,8 +510,11 @@
 				0C9F01AD25F07531008E4CE3 /* COpenGLEngine.cpp in Sources */,
 				0C9F01AE25F07531008E4CE3 /* CGLTextureYUV.cpp in Sources */,
 				0C9F01AF25F07531008E4CE3 /* CGLVideoVBO.cpp in Sources */,
+				0C9F033025F23EF4008E4CE3 /* CNetRequestPost.cpp in Sources */,
 				0C9F01A625F07531008E4CE3 /* CFiFoList.cpp in Sources */,
+				0C9F033125F23EF4008E4CE3 /* CNetRequestGet.cpp in Sources */,
 				0C9F01AB25F07531008E4CE3 /* CThreadPool.cpp in Sources */,
+				0C9F033225F23EF4008E4CE3 /* CNetRequest.cpp in Sources */,
 				0C9F01AC25F07531008E4CE3 /* CBaseThreadPool.cpp in Sources */,
 				0C9F01B025F07531008E4CE3 /* CGLShader.cpp in Sources */,
 			);

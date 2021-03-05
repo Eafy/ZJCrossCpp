@@ -2,7 +2,7 @@
 //  CString.cpp
 //  ZJCrossCppDemo
 //
-//  Created by lzj on 2021/3/4.
+//  Created by eafy on 2021/3/4.
 //
 
 #include "CString.hpp"

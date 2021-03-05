@@ -2,7 +2,7 @@
 //  SceneDelegate.m
 //  ZJCrossCppDemo
 //
-//  Created by lzj on 2021/3/4.
+//  Created by eafy on 2021/3/4.
 //
 
 #import "SceneDelegate.h"
