@@ -278,5 +278,38 @@ std::vector<std::string> CString::Split(const std::string &str, const std::strin
     return resultVec;
 }
 
+#pragma - File Path
+
+std::string CString::AppendComponentForPath(const std::string path, const std::string component)
+{
+    std::string filePath = path;
+    if (*path.rbegin() != '/' && *component.begin() != '/') {
+        filePath += "/";
+    }
+    filePath += component;
+    
+    return filePath;
+}
+
+std::string CString::LastPathComponent(const std::string path)
+{
+    std::vector<std::string> list = Split(path, "/");
+    if (list.size() > 0) {
+        return list.back();
+    }
+    return "";
+}
+
+std::string CString::RemoveLastComponentForPath(const std::string path, std::string &lastComName)
+{
+    std::string sPath = path;
+    std::vector<std::string> list = Split(path, "/");
+    if (list.size() > 0) {
+        lastComName = list.back();
+        sPath = path.substr(0, lastComName.length() - 1);
+    }
+    
+    return sPath;
+}
 
 ZJ_NAMESPACE_TOOL_END

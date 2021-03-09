@@ -55,6 +55,21 @@ public:
     /// @param str 需要分割的字符串
     /// @param pattern 分割字符串标识
     static std::vector<std::string> Split(const std::string &str, const std::string &pattern);
+    
+#pragma - File Path
+    /// 路径上添加下一级路径
+    /// @param path 路径
+    /// @param component 下一级组成部分名称
+    static std::string AppendComponentForPath(const std::string path, const std::string component);
+    
+    /// 获取路径的最后组成部分
+    /// @param path 文件路径
+    static std::string LastPathComponent(const std::string path);
+    
+    /// 移除最后一个路径的组成部分
+    /// @param path 文件路径
+    /// @param lastComName 获取最后一个组成部分的名称
+    static std::string RemoveLastComponentForPath(const std::string path, std::string &lastComName);
 };
 
 ZJ_NAMESPACE_TOOL_END

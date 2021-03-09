@@ -16,10 +16,10 @@
 
 ZJ_NAMESPACE_TOOL_BEGIN
 
-class CThreadPool:public CBaseThreadPool
+class CThreadPool: public CBaseThreadPool
 {
 public:
-    CThreadPool() {};   //初始化线程池(默认线程池最大64个线程)
+    CThreadPool(u_int32_t nThreads = 32): CBaseThreadPool(nThreads) {};   //初始化线程池(默认线程池最大64个线程)
     virtual ~CThreadPool() {};
     DECLARE_SINGLETON_CLASS(CThreadPool);
     
@@ -30,7 +30,19 @@ public:
         if (!IsExit()) {
             CThreadTask *threadTask = new CThreadTask();  //产生一个新的任务
             threadTask->m_Func = task;
-            threadTask->m_nTag = &func;
+            threadTask->m_nTag = (uint64_t)&func;
+            _AddTask(threadTask);
+        }
+    }
+    
+    template<typename callable, typename... arguments>
+    void AddTask(uint64_t tag, callable&& func, arguments&&... args) {
+        std::function<typename std::result_of<callable(arguments...)>::type()> task(std::bind(std::forward<callable>(func), std::forward<arguments>(args)...));
+
+        if (!IsExit()) {
+            CThreadTask *threadTask = new CThreadTask();  //产生一个新的任务
+            threadTask->m_Func = task;
+            threadTask->m_nTag = tag;
             _AddTask(threadTask);
         }
     }
@@ -57,9 +69,11 @@ public:
         CancelTask(tag);
     }
     
+    /// 取消任务，需要和AddTask第一个参数对应
+    /// @param tag 任务Tag
+    void CancelTask(uint64_t tag);
+    
 private:
-    void CancelTask(uint64_t tag);     //取消单一线程，若已运行中则无法取消
-
     void _RunOperate(CThreadTask *task);
 };
 

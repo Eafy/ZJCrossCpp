@@ -14,6 +14,7 @@ ZJ_NAMESPACE_TOOL_BEGIN
 
 CBaseThreadPool::CBaseThreadPool(u_int32_t nThreads)
 {
+    m_MaxThread = nThreads;
     m_TrigCondition = new CCondition();
     m_ThreadCount = 0;
     m_ThreadIdle = 0;
@@ -61,7 +62,7 @@ void *CBaseThreadPool::didRoutineThread(void *arg)
         self->m_ThreadIdle ++;
         while (self->m_pTaskFirst == nullptr && !self->m_bQuit) {       //等待队列有任务到来/收到线程池销毁通知
             if (self->m_ThreadIdle > 1 ||
-                self->m_TrigCondition->WaitTime(1000) == ETIMEDOUT) {
+                self->m_TrigCondition->WaitTime(30000) == ETIMEDOUT) {
                 waitTimeout = true;
                 break;
             }
