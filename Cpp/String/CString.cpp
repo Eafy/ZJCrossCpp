@@ -306,7 +306,7 @@ std::string CString::RemoveLastComponentForPath(const std::string path, std::str
     std::vector<std::string> list = Split(path, "/");
     if (list.size() > 0) {
         lastComName = list.back();
-        sPath = path.substr(0, lastComName.length() - 1);
+        sPath = path.substr(0, path.length() - lastComName.length());
     }
     
     return sPath;
