@@ -46,7 +46,7 @@ public:
     enum CONTENT_TYPE {
         CONTENT_TYPE_NONE = 0,
         CONTENT_TYPE_X_WWW_FORM_URLENCODED,
-        CONTENT_TYPE_JSON,
+        CONTENT_TYPE_JSON,      //请求参数为json字符串
         CONTENT_TYPE_JSON_RAW,  //请求参数为json格式
     };
     
