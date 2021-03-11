@@ -12,9 +12,11 @@ Pod::Spec.new do |s|
   
   s.source       = { :git => "https://github.com/Eafy/ZJCrossCpp.git", :tag => "v#{s.version}" }
   s.libraries = 'c++'
+  s.vendored_libraries = "Libs/iOS/**/*.a"
+  s.resources = "Libs/iOS/**/*.a"
 
-  s.source_files  = "ZJCrossCpp/Cpp/**/*.{h,hpp,c,cpp}"
-  s.public_header_files = "ZJCrossCpp/Cpp/**/*.{h,hpp}"
+  s.source_files  = "Libs/iOS/**/*.{h,hpp}", "Cpp/**/*.{h,hpp,c,cpp}", "Cpp/**/*.{h,hpp,c,cpp}"
+  s.public_header_files = "Cpp/**/*.{h,hpp}"
   
 end
 
