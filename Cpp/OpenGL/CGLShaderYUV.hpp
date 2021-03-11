@@ -13,7 +13,7 @@
 #include "CDefType.hpp"
 #include "CGLShader.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CGLShaderYUV : public CGLShader
 {
@@ -38,5 +38,5 @@ public:
     const GLfloat *m_pColorConversion;
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CGLShaderYUV_hpp */

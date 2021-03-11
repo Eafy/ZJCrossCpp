@@ -8,7 +8,7 @@
 
 #include "CThread.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 CThread::CThread():m_bIsRunning(false) {
 }
@@ -81,4 +81,4 @@ void CThread::Unlock()
     m_Lock.unlock();
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

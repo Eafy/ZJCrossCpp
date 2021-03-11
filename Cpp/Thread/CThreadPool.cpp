@@ -8,7 +8,7 @@
 
 #include "CThreadPool.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 void CThreadPool::_RunOperate(CThreadTask *task)
 {
@@ -35,4 +35,4 @@ void CThreadPool::CancelTask(uint64_t tag)
     Unlock();
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

@@ -7,9 +7,8 @@
 //
 
 #include "CGLShaderYUV.hpp"
-#include "CLog.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 // BT.601, which is the standard for SDTV.
 static const GLfloat kColorConversion601[] = {
@@ -148,4 +147,4 @@ bool CGLShaderYUV::UpdateAllUniforms()
     return true;
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

@@ -16,6 +16,8 @@
 #include "CNetRequestUpload.hpp"
 #include "CNetRequestDownload.hpp"
 
+ZJ_NAMESPACE_BEGIN
+
 class CFTPClient {
     
 public:
@@ -105,4 +107,5 @@ private:
     CNetRequestDownload *m_pDownloader = nullptr;
 };
 
+ZJ_NAMESPACE_END
 #endif /* CFTPClient_hpp */

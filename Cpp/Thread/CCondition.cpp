@@ -11,7 +11,7 @@
 #include <sys/time.h>
 #include <sys/errno.h>
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 CCondition::CCondition()
 {
@@ -111,4 +111,4 @@ int CCondition::Broadcast()
     return pthread_cond_broadcast(&m_Cond);
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

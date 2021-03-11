@@ -14,7 +14,7 @@
 #include "CSingleton.hpp"
 #include "CBaseThreadPool.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CThreadPool: public CBaseThreadPool
 {
@@ -77,5 +77,5 @@ private:
     void _RunOperate(CThreadTask *task);
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CThreadPool_hpp */

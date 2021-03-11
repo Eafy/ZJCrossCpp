@@ -19,7 +19,7 @@
 #include <condition_variable>
 #include "CDefType.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CTimer
 {
@@ -123,5 +123,5 @@ private:
     std::condition_variable_any m_ThreadCon;
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CTimer_hpp */

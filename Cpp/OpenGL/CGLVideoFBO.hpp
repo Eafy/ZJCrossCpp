@@ -19,7 +19,7 @@
 #include <OpenGLES/ES2/glext.h>
 #endif
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CGLVideoFBO
 {
@@ -48,5 +48,5 @@ public:
     int m_FboHeight = 0;
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CGLVideoFBO_hpp */

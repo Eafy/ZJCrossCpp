@@ -7,9 +7,8 @@
 //
 
 #include "CGLVideoFBO.hpp"
-#include "CLog.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 CGLVideoFBO::CGLVideoFBO()
 {
@@ -73,4 +72,4 @@ bool CGLVideoFBO::BindBuffers()
     return true;
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

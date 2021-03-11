@@ -19,7 +19,7 @@
 #include <OpenGLES/ES2/glext.h>
 #endif
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CGLShaderYUV;
 class CGLTextureYUV;
@@ -46,5 +46,5 @@ private:
     int m_ViewHeight = 0;
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* COpenGLEngine_hpp */

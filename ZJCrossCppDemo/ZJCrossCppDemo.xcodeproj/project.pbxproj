@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,28 +16,7 @@
 		0C9F015D25F074C7008E4CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F015C25F074C7008E4CE3 /* main.m */; };
 		0C9F016725F074C7008E4CE3 /* ZJCrossCppDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F016625F074C7008E4CE3 /* ZJCrossCppDemoTests.m */; };
 		0C9F017225F074C7008E4CE3 /* ZJCrossCppDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F017125F074C7008E4CE3 /* ZJCrossCppDemoUITests.m */; };
-		0C9F01A625F07531008E4CE3 /* CFiFoList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F018825F07531008E4CE3 /* CFiFoList.cpp */; };
-		0C9F01A725F07531008E4CE3 /* CTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F018C25F07531008E4CE3 /* CTimer.cpp */; };
-		0C9F01A825F07531008E4CE3 /* CLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F018F25F07531008E4CE3 /* CLog.cpp */; };
-		0C9F01A925F07531008E4CE3 /* CCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F019225F07531008E4CE3 /* CCondition.cpp */; };
-		0C9F01AA25F07531008E4CE3 /* CThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F019325F07531008E4CE3 /* CThread.cpp */; };
-		0C9F01AB25F07531008E4CE3 /* CThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F019425F07531008E4CE3 /* CThreadPool.cpp */; };
-		0C9F01AC25F07531008E4CE3 /* CBaseThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F019725F07531008E4CE3 /* CBaseThreadPool.cpp */; };
-		0C9F01AD25F07531008E4CE3 /* COpenGLEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F019B25F07531008E4CE3 /* COpenGLEngine.cpp */; };
-		0C9F01AE25F07531008E4CE3 /* CGLTextureYUV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F019E25F07531008E4CE3 /* CGLTextureYUV.cpp */; };
-		0C9F01AF25F07531008E4CE3 /* CGLVideoVBO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F019F25F07531008E4CE3 /* CGLVideoVBO.cpp */; };
-		0C9F01B025F07531008E4CE3 /* CGLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F01A125F07531008E4CE3 /* CGLShader.cpp */; };
-		0C9F01B125F07531008E4CE3 /* CGLShaderYUV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F01A225F07531008E4CE3 /* CGLShaderYUV.cpp */; };
-		0C9F01B225F07531008E4CE3 /* CGLVideoFBO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F01A525F07531008E4CE3 /* CGLVideoFBO.cpp */; };
-		0C9F01CA25F08E2F008E4CE3 /* CString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F01C825F08E2F008E4CE3 /* CString.cpp */; };
-		0C9F032E25F23EF4008E4CE3 /* CNetRequestDownload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032425F23EF4008E4CE3 /* CNetRequestDownload.cpp */; };
-		0C9F032F25F23EF4008E4CE3 /* CNetRequestUpload.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032525F23EF4008E4CE3 /* CNetRequestUpload.cpp */; };
-		0C9F033025F23EF4008E4CE3 /* CNetRequestPost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032825F23EF4008E4CE3 /* CNetRequestPost.cpp */; };
-		0C9F033125F23EF4008E4CE3 /* CNetRequestGet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032C25F23EF4008E4CE3 /* CNetRequestGet.cpp */; };
-		0C9F033225F23EF4008E4CE3 /* CNetRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */; };
-		0C9F033B25F23F6D008E4CE3 /* CJsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F033725F23F6D008E4CE3 /* CJsonObject.cpp */; };
-		0C9F033C25F23F6D008E4CE3 /* cJSONZJ.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */; };
-		0CFCC44125F9F4B000FAE6BA /* CFTPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC43F25F9F4B000FAE6BA /* CFTPClient.cpp */; };
+		0CFCC45E25F9F8E500FAE6BA /* ZJCrossCpp.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 0CFCC45D25F9F8E500FAE6BA /* ZJCrossCpp.podspec */; };
 		80A76C25677E819FA4EB123C /* libPods-ZJCrossCppDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4638FB0FCAFCC446EB026B /* libPods-ZJCrossCppDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -77,52 +56,7 @@
 		0C9F016D25F074C7008E4CE3 /* ZJCrossCppDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJCrossCppDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9F017125F074C7008E4CE3 /* ZJCrossCppDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJCrossCppDemoUITests.m; sourceTree = "<group>"; };
 		0C9F017325F074C7008E4CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0C9F018725F07531008E4CE3 /* CFiFoList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CFiFoList.hpp; sourceTree = "<group>"; };
-		0C9F018825F07531008E4CE3 /* CFiFoList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFiFoList.cpp; sourceTree = "<group>"; };
-		0C9F018925F07531008E4CE3 /* CLog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLog.hpp; sourceTree = "<group>"; };
-		0C9F018A25F07531008E4CE3 /* CDefType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CDefType.hpp; sourceTree = "<group>"; };
-		0C9F018C25F07531008E4CE3 /* CTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTimer.cpp; sourceTree = "<group>"; };
-		0C9F018D25F07531008E4CE3 /* CTimer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CTimer.hpp; sourceTree = "<group>"; };
-		0C9F018E25F07531008E4CE3 /* CSingleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CSingleton.hpp; sourceTree = "<group>"; };
-		0C9F018F25F07531008E4CE3 /* CLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLog.cpp; sourceTree = "<group>"; };
-		0C9F019125F07531008E4CE3 /* CBaseThreadPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CBaseThreadPool.hpp; sourceTree = "<group>"; };
-		0C9F019225F07531008E4CE3 /* CCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCondition.cpp; sourceTree = "<group>"; };
-		0C9F019325F07531008E4CE3 /* CThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CThread.cpp; sourceTree = "<group>"; };
-		0C9F019425F07531008E4CE3 /* CThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CThreadPool.cpp; sourceTree = "<group>"; };
-		0C9F019525F07531008E4CE3 /* CThread.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CThread.hpp; sourceTree = "<group>"; };
-		0C9F019625F07531008E4CE3 /* CThreadPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CThreadPool.hpp; sourceTree = "<group>"; };
-		0C9F019725F07531008E4CE3 /* CBaseThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBaseThreadPool.cpp; sourceTree = "<group>"; };
-		0C9F019825F07531008E4CE3 /* CCondition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CCondition.hpp; sourceTree = "<group>"; };
-		0C9F019A25F07531008E4CE3 /* CGLVideoFBO.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGLVideoFBO.hpp; sourceTree = "<group>"; };
-		0C9F019B25F07531008E4CE3 /* COpenGLEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = COpenGLEngine.cpp; sourceTree = "<group>"; };
-		0C9F019C25F07531008E4CE3 /* CGLShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGLShader.hpp; sourceTree = "<group>"; };
-		0C9F019D25F07531008E4CE3 /* CGLShaderYUV.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGLShaderYUV.hpp; sourceTree = "<group>"; };
-		0C9F019E25F07531008E4CE3 /* CGLTextureYUV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLTextureYUV.cpp; sourceTree = "<group>"; };
-		0C9F019F25F07531008E4CE3 /* CGLVideoVBO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLVideoVBO.cpp; sourceTree = "<group>"; };
-		0C9F01A025F07531008E4CE3 /* COpenGLEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = COpenGLEngine.hpp; sourceTree = "<group>"; };
-		0C9F01A125F07531008E4CE3 /* CGLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLShader.cpp; sourceTree = "<group>"; };
-		0C9F01A225F07531008E4CE3 /* CGLShaderYUV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLShaderYUV.cpp; sourceTree = "<group>"; };
-		0C9F01A325F07531008E4CE3 /* CGLTextureYUV.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGLTextureYUV.hpp; sourceTree = "<group>"; };
-		0C9F01A425F07531008E4CE3 /* CGLVideoVBO.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CGLVideoVBO.hpp; sourceTree = "<group>"; };
-		0C9F01A525F07531008E4CE3 /* CGLVideoFBO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGLVideoFBO.cpp; sourceTree = "<group>"; };
-		0C9F01C825F08E2F008E4CE3 /* CString.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CString.cpp; sourceTree = "<group>"; };
-		0C9F01C925F08E2F008E4CE3 /* CString.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CString.hpp; sourceTree = "<group>"; };
-		0C9F032425F23EF4008E4CE3 /* CNetRequestDownload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestDownload.cpp; sourceTree = "<group>"; };
-		0C9F032525F23EF4008E4CE3 /* CNetRequestUpload.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestUpload.cpp; sourceTree = "<group>"; };
-		0C9F032625F23EF4008E4CE3 /* CNetRequestGet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestGet.hpp; sourceTree = "<group>"; };
-		0C9F032725F23EF4008E4CE3 /* CNetRequestDownload.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestDownload.hpp; sourceTree = "<group>"; };
-		0C9F032825F23EF4008E4CE3 /* CNetRequestPost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestPost.cpp; sourceTree = "<group>"; };
-		0C9F032925F23EF4008E4CE3 /* CNetRequest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequest.hpp; sourceTree = "<group>"; };
-		0C9F032A25F23EF4008E4CE3 /* CNetRequestPost.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestPost.hpp; sourceTree = "<group>"; };
-		0C9F032B25F23EF4008E4CE3 /* CNetRequestUpload.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CNetRequestUpload.hpp; sourceTree = "<group>"; };
-		0C9F032C25F23EF4008E4CE3 /* CNetRequestGet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequestGet.cpp; sourceTree = "<group>"; };
-		0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNetRequest.cpp; sourceTree = "<group>"; };
-		0C9F033725F23F6D008E4CE3 /* CJsonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CJsonObject.cpp; sourceTree = "<group>"; };
-		0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cJSONZJ.c; sourceTree = "<group>"; };
-		0C9F033925F23F6D008E4CE3 /* CJsonObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CJsonObject.hpp; sourceTree = "<group>"; };
-		0C9F033A25F23F6D008E4CE3 /* cJSONZJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cJSONZJ.h; sourceTree = "<group>"; };
-		0CFCC43F25F9F4B000FAE6BA /* CFTPClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFTPClient.cpp; sourceTree = "<group>"; };
-		0CFCC44025F9F4B000FAE6BA /* CFTPClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CFTPClient.hpp; sourceTree = "<group>"; };
+		0CFCC45D25F9F8E500FAE6BA /* ZJCrossCpp.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZJCrossCpp.podspec; path = ../../ZJCrossCpp.podspec; sourceTree = "<group>"; };
 		395C8B3C1817639199957E2C /* Pods-ZJCrossCppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5C4638FB0FCAFCC446EB026B /* libPods-ZJCrossCppDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZJCrossCppDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D4F1C69D9F0377371C0E5C /* Pods-ZJCrossCppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.release.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,7 +113,6 @@
 		0C9F014925F074C6008E4CE3 /* ZJCrossCppDemo */ = {
 			isa = PBXGroup;
 			children = (
-				0C9F018525F07531008E4CE3 /* Cpp */,
 				0C9F014A25F074C6008E4CE3 /* AppDelegate.h */,
 				0C9F014B25F074C6008E4CE3 /* AppDelegate.m */,
 				0C9F014D25F074C6008E4CE3 /* SceneDelegate.h */,
@@ -191,6 +124,7 @@
 				0C9F015825F074C7008E4CE3 /* LaunchScreen.storyboard */,
 				0C9F015B25F074C7008E4CE3 /* Info.plist */,
 				0C9F015C25F074C7008E4CE3 /* main.m */,
+				0CFCC45D25F9F8E500FAE6BA /* ZJCrossCpp.podspec */,
 			);
 			path = ZJCrossCppDemo;
 			sourceTree = "<group>";
@@ -211,116 +145,6 @@
 				0C9F017325F074C7008E4CE3 /* Info.plist */,
 			);
 			path = ZJCrossCppDemoUITests;
-			sourceTree = "<group>";
-		};
-		0C9F018525F07531008E4CE3 /* Cpp */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F032325F23E90008E4CE3 /* Net */,
-				0C9F01C425F08E12008E4CE3 /* String */,
-				0C9F018925F07531008E4CE3 /* CLog.hpp */,
-				0C9F018F25F07531008E4CE3 /* CLog.cpp */,
-				0C9F018A25F07531008E4CE3 /* CDefType.hpp */,
-				0C9F018E25F07531008E4CE3 /* CSingleton.hpp */,
-				0C9F018625F07531008E4CE3 /* FiFoList */,
-				0C9F018B25F07531008E4CE3 /* Timer */,
-				0C9F019025F07531008E4CE3 /* Thread */,
-				0C9F033625F23F6D008E4CE3 /* CJsonObject */,
-				0C9F019925F07531008E4CE3 /* OpenGL */,
-			);
-			name = Cpp;
-			path = ../../Cpp;
-			sourceTree = "<group>";
-		};
-		0C9F018625F07531008E4CE3 /* FiFoList */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F018725F07531008E4CE3 /* CFiFoList.hpp */,
-				0C9F018825F07531008E4CE3 /* CFiFoList.cpp */,
-			);
-			path = FiFoList;
-			sourceTree = "<group>";
-		};
-		0C9F018B25F07531008E4CE3 /* Timer */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F018D25F07531008E4CE3 /* CTimer.hpp */,
-				0C9F018C25F07531008E4CE3 /* CTimer.cpp */,
-			);
-			path = Timer;
-			sourceTree = "<group>";
-		};
-		0C9F019025F07531008E4CE3 /* Thread */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F019625F07531008E4CE3 /* CThreadPool.hpp */,
-				0C9F019425F07531008E4CE3 /* CThreadPool.cpp */,
-				0C9F019525F07531008E4CE3 /* CThread.hpp */,
-				0C9F019325F07531008E4CE3 /* CThread.cpp */,
-				0C9F019125F07531008E4CE3 /* CBaseThreadPool.hpp */,
-				0C9F019725F07531008E4CE3 /* CBaseThreadPool.cpp */,
-				0C9F019825F07531008E4CE3 /* CCondition.hpp */,
-				0C9F019225F07531008E4CE3 /* CCondition.cpp */,
-			);
-			path = Thread;
-			sourceTree = "<group>";
-		};
-		0C9F019925F07531008E4CE3 /* OpenGL */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F019D25F07531008E4CE3 /* CGLShaderYUV.hpp */,
-				0C9F019E25F07531008E4CE3 /* CGLTextureYUV.cpp */,
-				0C9F019A25F07531008E4CE3 /* CGLVideoFBO.hpp */,
-				0C9F019F25F07531008E4CE3 /* CGLVideoVBO.cpp */,
-				0C9F01A025F07531008E4CE3 /* COpenGLEngine.hpp */,
-				0C9F019B25F07531008E4CE3 /* COpenGLEngine.cpp */,
-				0C9F019C25F07531008E4CE3 /* CGLShader.hpp */,
-				0C9F01A125F07531008E4CE3 /* CGLShader.cpp */,
-				0C9F01A225F07531008E4CE3 /* CGLShaderYUV.cpp */,
-				0C9F01A325F07531008E4CE3 /* CGLTextureYUV.hpp */,
-				0C9F01A425F07531008E4CE3 /* CGLVideoVBO.hpp */,
-				0C9F01A525F07531008E4CE3 /* CGLVideoFBO.cpp */,
-			);
-			path = OpenGL;
-			sourceTree = "<group>";
-		};
-		0C9F01C425F08E12008E4CE3 /* String */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F01C825F08E2F008E4CE3 /* CString.cpp */,
-				0C9F01C925F08E2F008E4CE3 /* CString.hpp */,
-			);
-			path = String;
-			sourceTree = "<group>";
-		};
-		0C9F032325F23E90008E4CE3 /* Net */ = {
-			isa = PBXGroup;
-			children = (
-				0CFCC43F25F9F4B000FAE6BA /* CFTPClient.cpp */,
-				0CFCC44025F9F4B000FAE6BA /* CFTPClient.hpp */,
-				0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */,
-				0C9F032925F23EF4008E4CE3 /* CNetRequest.hpp */,
-				0C9F032425F23EF4008E4CE3 /* CNetRequestDownload.cpp */,
-				0C9F032725F23EF4008E4CE3 /* CNetRequestDownload.hpp */,
-				0C9F032C25F23EF4008E4CE3 /* CNetRequestGet.cpp */,
-				0C9F032625F23EF4008E4CE3 /* CNetRequestGet.hpp */,
-				0C9F032825F23EF4008E4CE3 /* CNetRequestPost.cpp */,
-				0C9F032A25F23EF4008E4CE3 /* CNetRequestPost.hpp */,
-				0C9F032525F23EF4008E4CE3 /* CNetRequestUpload.cpp */,
-				0C9F032B25F23EF4008E4CE3 /* CNetRequestUpload.hpp */,
-			);
-			path = Net;
-			sourceTree = "<group>";
-		};
-		0C9F033625F23F6D008E4CE3 /* CJsonObject */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F033725F23F6D008E4CE3 /* CJsonObject.cpp */,
-				0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */,
-				0C9F033925F23F6D008E4CE3 /* CJsonObject.hpp */,
-				0C9F033A25F23F6D008E4CE3 /* cJSONZJ.h */,
-			);
-			path = CJsonObject;
 			sourceTree = "<group>";
 		};
 		39239664E252E93DA25B29A7 /* Frameworks */ = {
@@ -351,6 +175,7 @@
 				0C9F014325F074C6008E4CE3 /* Sources */,
 				0C9F014425F074C6008E4CE3 /* Frameworks */,
 				0C9F014525F074C6008E4CE3 /* Resources */,
+				A5FF0FD00657D432B55AAF80 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -448,6 +273,7 @@
 				0C9F015A25F074C7008E4CE3 /* LaunchScreen.storyboard in Resources */,
 				0C9F015725F074C7008E4CE3 /* Assets.xcassets in Resources */,
 				0C9F015525F074C6008E4CE3 /* Main.storyboard in Resources */,
+				0CFCC45E25F9F8E500FAE6BA /* ZJCrossCpp.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +316,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A5FF0FD00657D432B55AAF80 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -497,32 +340,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C9F01A825F07531008E4CE3 /* CLog.cpp in Sources */,
-				0C9F01A925F07531008E4CE3 /* CCondition.cpp in Sources */,
-				0C9F01B125F07531008E4CE3 /* CGLShaderYUV.cpp in Sources */,
-				0C9F032E25F23EF4008E4CE3 /* CNetRequestDownload.cpp in Sources */,
-				0C9F033C25F23F6D008E4CE3 /* cJSONZJ.c in Sources */,
-				0C9F033B25F23F6D008E4CE3 /* CJsonObject.cpp in Sources */,
 				0C9F015225F074C6008E4CE3 /* ViewController.mm in Sources */,
-				0C9F01A725F07531008E4CE3 /* CTimer.cpp in Sources */,
-				0C9F032F25F23EF4008E4CE3 /* CNetRequestUpload.cpp in Sources */,
 				0C9F014C25F074C6008E4CE3 /* AppDelegate.m in Sources */,
 				0C9F015D25F074C7008E4CE3 /* main.m in Sources */,
 				0C9F014F25F074C6008E4CE3 /* SceneDelegate.m in Sources */,
-				0C9F01CA25F08E2F008E4CE3 /* CString.cpp in Sources */,
-				0CFCC44125F9F4B000FAE6BA /* CFTPClient.cpp in Sources */,
-				0C9F01AA25F07531008E4CE3 /* CThread.cpp in Sources */,
-				0C9F01B225F07531008E4CE3 /* CGLVideoFBO.cpp in Sources */,
-				0C9F01AD25F07531008E4CE3 /* COpenGLEngine.cpp in Sources */,
-				0C9F01AE25F07531008E4CE3 /* CGLTextureYUV.cpp in Sources */,
-				0C9F01AF25F07531008E4CE3 /* CGLVideoVBO.cpp in Sources */,
-				0C9F033025F23EF4008E4CE3 /* CNetRequestPost.cpp in Sources */,
-				0C9F01A625F07531008E4CE3 /* CFiFoList.cpp in Sources */,
-				0C9F033125F23EF4008E4CE3 /* CNetRequestGet.cpp in Sources */,
-				0C9F01AB25F07531008E4CE3 /* CThreadPool.cpp in Sources */,
-				0C9F033225F23EF4008E4CE3 /* CNetRequest.cpp in Sources */,
-				0C9F01AC25F07531008E4CE3 /* CBaseThreadPool.cpp in Sources */,
-				0C9F01B025F07531008E4CE3 /* CGLShader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

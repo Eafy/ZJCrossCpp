@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "CNetRequest.hpp"
 
+ZJ_NAMESPACE_BEGIN
+
 class CNetRequestGet: public CNetRequest {
 public:
     CNetRequestGet(void *pUserData = nullptr);
@@ -22,4 +24,6 @@ public:
     void Start(const std::string url, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback = nullptr);
 };
 
+ZJ_NAMESPACE_END
 #endif /* CNetRequestGet_hpp */
+

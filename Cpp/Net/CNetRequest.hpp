@@ -15,7 +15,9 @@
 #include <map>
 #include <functional>
 #include "CJsonObject.hpp"
-#include "CLog.hpp"
+#include "CDefType.hpp"
+
+ZJ_NAMESPACE_BEGIN
 
 class CNetRequest {
     
@@ -248,4 +250,5 @@ private:
     std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> m_pRespCallback = nullptr;    //结果回调
 };
 
+ZJ_NAMESPACE_END
 #endif /* CNetRequestInfo_hpp */

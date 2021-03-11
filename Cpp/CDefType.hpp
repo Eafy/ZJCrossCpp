@@ -32,16 +32,13 @@
 #define IS_IOS_PLATFORM 0
 #endif
 
-#define ZJ_NAMESPACE_TOOL_BEGIN \
-namespace ZJ {\
-namespace Tool {
-#define ZJ_NAMESPACE_TOOL_END \
-};  /*Tool*/ \
+#define ZJ_NAMESPACE_BEGIN \
+namespace ZJ {
+#define ZJ_NAMESPACE_END \
 };  /*ZJ*/
 
-#define ZJLock(a) std::lock_guard<std::mutex> zjlk(a);
+#define CLock(a) std::lock_guard<std::mutex> zjlk(a);
 
-
-#include "CLog.hpp"
+#include <ZJLog/ZJPrintfLog.h>
 
 #endif /* CDefType_h */

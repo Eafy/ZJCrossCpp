@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "CNetRequest.hpp"
 
+ZJ_NAMESPACE_BEGIN
+
 class CNetRequestUpload: public CNetRequest {
 public:
     CNetRequestUpload(void *pUserData = nullptr, MODE_TYPE mode = MODE_TYPE_HTTP);
@@ -47,5 +49,6 @@ private:
     std::function<void(const std::string url, long long dlTotal, long long dlNow)> m_pProgessCallback = nullptr;
 };
 
-
+ZJ_NAMESPACE_END
 #endif /* CNetRequestUpload_hpp */
+

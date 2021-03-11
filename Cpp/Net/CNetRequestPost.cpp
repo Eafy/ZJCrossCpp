@@ -8,7 +8,8 @@
 
 #include "CNetRequestPost.hpp"
 #include "curl.h"
-#include "CPrintfLog.hpp"
+
+ZJ_NAMESPACE_BEGIN
 
 CNetRequestPost::CNetRequestPost(void *pUserData): CNetRequest(pUserData) {
 
@@ -27,3 +28,5 @@ void CNetRequestPost::Start(const std::string url, const std::string paraMap, st
         Request(pCallback);
     }
 }
+
+ZJ_NAMESPACE_END

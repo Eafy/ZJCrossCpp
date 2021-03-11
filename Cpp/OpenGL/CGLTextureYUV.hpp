@@ -19,7 +19,7 @@
 #include <OpenGLES/ES2/glext.h>
 #endif
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CGLTextureYUV
 {
@@ -32,5 +32,5 @@ public:
     GLuint m_Texture[3];
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CGLTextureYUV_hpp */

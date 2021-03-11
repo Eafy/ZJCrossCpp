@@ -9,7 +9,7 @@
 #include "CTimer.hpp"
 #include <future>
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 CTimer::CTimer(const std::string sTimerName):m_bExpired(true), m_bTryExpired(false), m_bLoop(false)
 {
@@ -86,4 +86,4 @@ void CTimer::DeleteThread()
     }
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

@@ -7,9 +7,8 @@
 //
 
 #include "CGLVideoVBO.hpp"
-#include "CLog.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -71,4 +70,4 @@ void CGLVideoVBO::Update()
     }
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

@@ -13,7 +13,7 @@
 #include <pthread.h>
 #include "CDefType.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CCondition
 {
@@ -34,5 +34,5 @@ private:
     pthread_cond_t m_Cond;
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CCondition_hpp */

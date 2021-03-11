@@ -11,7 +11,8 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include "curl.h"
-#include "CPrintfLog.hpp"
+
+ZJ_NAMESPACE_BEGIN
 
 CNetRequestUpload::CNetRequestUpload(void *pUserData, MODE_TYPE mode): CNetRequest(pUserData, mode)
 {
@@ -100,3 +101,5 @@ void CNetRequestUpload::OnProgressResult(void *userData, long long dlTotal, long
         CPrintfW("Upload: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
     }
 }
+
+ZJ_NAMESPACE_END

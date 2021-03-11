@@ -9,9 +9,8 @@
 #include "CGLShader.hpp"
 #include <fstream>
 #include <sstream>
-#include "CLog.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 CGLShader::CGLShader():m_Program(0)
 {
@@ -235,4 +234,4 @@ bool CGLShader::ValidateProgram(GLuint prog)
     return true;
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

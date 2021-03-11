@@ -10,7 +10,7 @@
 #include "CCondition.hpp"
 #include <thread>
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 CBaseThreadPool::CBaseThreadPool(u_int32_t nThreads)
 {
@@ -147,4 +147,4 @@ void CBaseThreadPool::_DeleteTask(CThreadTask *task)
 }
 
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

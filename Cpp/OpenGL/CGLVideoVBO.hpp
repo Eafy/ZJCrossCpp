@@ -19,7 +19,7 @@
 #include <OpenGLES/ES2/glext.h>
 #endif
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CGLVideoVBO
 {
@@ -37,5 +37,5 @@ private:
     GLuint m_AttTexcoord = 0;
 };
     
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CGLVideoVBO_hpp */

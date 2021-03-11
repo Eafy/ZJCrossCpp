@@ -15,7 +15,7 @@
 #include <deque>
 #include "CDefType.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 template<class T>
 class CFiFoNode
@@ -181,5 +181,5 @@ protected:
     uint64_t m_nSize = 0;      //列表数据总大小
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CFiFoList_hpp */

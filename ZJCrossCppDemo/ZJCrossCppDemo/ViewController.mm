@@ -10,6 +10,8 @@
 #import "CNetRequestPost.hpp"
 #import "CNetRequestDownload.hpp"
 
+using namespace ZJ;
+
 @interface ViewController ()
 
 @property (nonatomic,assign) CNetRequestGet *requestGet;
@@ -23,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     
     self.requestGet = new CNetRequestGet();
     self.requestGet->AddParameter("ver", 2);

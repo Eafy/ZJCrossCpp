@@ -13,6 +13,8 @@
 #include <pthread.h>
 #include <memory>
 
+ZJ_NAMESPACE_BEGIN
+
 class CSinGuard {
 public:
     CSinGuard() { m_lGrdCnt = 0; pthread_mutex_init(&m_cs, nullptr); }
@@ -101,4 +103,5 @@ static void Release() { \
     CSingleton<Type>::Release(); \
 }
 
+ZJ_NAMESPACE_END
 #endif /* CSingleton_hpp */

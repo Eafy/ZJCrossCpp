@@ -12,8 +12,9 @@
 #include <stdio.h>
 #include <dirent.h>
 #include "curl.h"
-#include "CPrintfLog.hpp"
 #include "CString.hpp"
+
+ZJ_NAMESPACE_BEGIN
 
 CNetRequestDownload::CNetRequestDownload(void *pUserData, MODE_TYPE mode): CNetRequest(pUserData, mode)
 {
@@ -66,10 +67,10 @@ void CNetRequestDownload::Start(const std::string url, const std::string fileDir
         
         std::string fileNameT = fileName;
         if (fileName.length() == 0) {   //文件名不存在，则使用服务器文件名称
-            std::vector<std::string> list = ZJ::Tool::CString::Split(url, "/");
+            std::vector<std::string> list = ZJ::CString::Split(url, "/");
             fileNameT = list.back();
         }
-        std::string filePath = ZJ::Tool::CString::AppendComponentForPath(fileDir, fileNameT);
+        std::string filePath = ZJ::CString::AppendComponentForPath(fileDir, fileNameT);
         FILE *file = fopen(filePath.c_str(), "ab+");
         if (file == nullptr) {
             OnRequestResult(m_pUserData, ERR_FILE_PATH_INVALID, "", "", "");
@@ -121,3 +122,5 @@ void CNetRequestDownload::OnProgressResult(void *userData, long long dlTotal, lo
         CPrintfW("Download: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
     }
 }
+
+ZJ_NAMESPACE_END

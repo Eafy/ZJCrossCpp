@@ -7,10 +7,9 @@
 //
 
 #include "CGLTextureYUV.hpp"
-#include "CLog.hpp"
 #include <string>
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 CGLTextureYUV::CGLTextureYUV()
 {
@@ -57,4 +56,4 @@ bool CGLTextureYUV::isValid()
     return true;
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

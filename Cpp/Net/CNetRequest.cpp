@@ -9,8 +9,9 @@
 #include "CNetRequest.hpp"
 #include <unistd.h>
 #include "curl.h"
-#include "CPrintfLog.hpp"
 #include "CString.hpp"
+
+ZJ_NAMESPACE_BEGIN
 
 static size_t OnProgressResultCallback(void *userData, long long dlTotal, long long dlNow, long long ulTotal, long long ulNow) {
     CNetRequest *request = static_cast<CNetRequest *>(userData);
@@ -218,9 +219,9 @@ std::string CNetRequest::BuildParameters()
 {
     if (m_nContentType == CONTENT_TYPE_JSON_RAW) {  //转Json
         if (m_sParaString.length() > 0) {
-            std::vector<std::string> map = ZJ::Tool::CString::Split(m_sParaString, "&");
+            std::vector<std::string> map = ZJ::CString::Split(m_sParaString, "&");
             for (std::string str : map) {
-                std::vector<std::string> kv = ZJ::Tool::CString::Split(str, "=");
+                std::vector<std::string> kv = ZJ::CString::Split(str, "=");
                 if (kv.size() >= 2) {
                     m_oParaJsonObj.Add(kv.at(0), kv.at(1));
                 }
@@ -262,7 +263,7 @@ std::string CNetRequest::BuildParameters()
             } else if (type == cJSONZJ_Object || type == cJSONZJ_Array) {
                 neb::CJsonObject obj;
                 m_oParaJsonObj.Get(keyT, obj);
-                sValue << ZJ::Tool::CString::EncodeToUTF8(obj.ToString());
+                sValue << ZJ::CString::EncodeToUTF8(obj.ToString());
             }
             m_sParaString += sValue.str();
         }
@@ -483,3 +484,5 @@ void CNetRequest::OnRequestResult(void *userData, long statusCode, std::string s
 void CNetRequest::OnProgressResult(void *userData, long long dlTotal, long long dlNow, long long ulTotal, long long ulNow) {
     CPrintfW("No set progress proxy interface: %s, download: %lld/%lld upload: %lld/%lld", m_sUrl.c_str(), dlTotal, dlNow, ulTotal, ulNow);
 }
+
+ZJ_NAMESPACE_END

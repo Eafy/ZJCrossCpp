@@ -15,7 +15,7 @@
 #include <sstream>
 #include "CDefType.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CString {
 public:
@@ -72,6 +72,6 @@ public:
     static std::string RemoveLastComponentForPath(const std::string path, std::string &lastComName);
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 
 #endif /* CString_hpp */

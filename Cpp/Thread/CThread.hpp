@@ -15,7 +15,7 @@
 #include <functional>
 #include "CDefType.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CThread
 {
@@ -58,5 +58,5 @@ private:
     std::function<void()> m_ThreadFuncTask = nullptr;
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CThread_hpp */

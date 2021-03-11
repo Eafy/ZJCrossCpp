@@ -16,7 +16,7 @@
 #define _arc4random() rand()
 #endif
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 
 void UTF8ToUnicode(wchar_t* pOut, const char *pText)
@@ -312,4 +312,4 @@ std::string CString::RemoveLastComponentForPath(const std::string path, std::str
     return sPath;
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

@@ -14,7 +14,7 @@
 #include <functional>
 #include <string>
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
                
 class CCondition;
 
@@ -83,5 +83,5 @@ private:
     CCondition *m_TrigCondition = nullptr;        //状态量
 };
             
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CBaseThreadPool_hpp */

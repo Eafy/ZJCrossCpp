@@ -7,12 +7,11 @@
 //
 
 #include "COpenGLEngine.hpp"
-#include "CLog.hpp"
 #include "CGLTextureYUV.hpp"
 #include "CGLShaderYUV.hpp"
 #include "CGLVideoVBO.hpp"
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 COpenGLEngine::COpenGLEngine()
 {
@@ -108,4 +107,4 @@ void COpenGLEngine::UpdateSize(int width, int height)
     }
 }
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END

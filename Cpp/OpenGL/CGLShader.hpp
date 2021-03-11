@@ -21,7 +21,7 @@
 #include <OpenGLES/ES2/glext.h>
 #endif
 
-ZJ_NAMESPACE_TOOL_BEGIN
+ZJ_NAMESPACE_BEGIN
 
 class CGLShader
 {
@@ -76,5 +76,5 @@ private:
     GLint *m_pUniforms = nullptr;
 };
 
-ZJ_NAMESPACE_TOOL_END
+ZJ_NAMESPACE_END
 #endif /* CGLShader_hpp */

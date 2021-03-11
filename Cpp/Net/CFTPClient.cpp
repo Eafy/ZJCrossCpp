@@ -11,17 +11,19 @@
 #include <string.h>
 #include "CThreadPool.hpp"
 
+ZJ_NAMESPACE_BEGIN
+
 CFTPClient::CFTPClient(void *pUserData)
 {
     m_pUserData = pUserData;
-    m_pThreadPool = new ZJ::Tool::CThreadPool(1);
+    m_pThreadPool = new ZJ::CThreadPool(1);
 }
 
 CFTPClient::~CFTPClient()
 {
     if (m_pThreadPool) {
-        ((ZJ::Tool::CThreadPool *)m_pThreadPool)->CancelAll();
-        delete (ZJ::Tool::CThreadPool *)m_pThreadPool;
+        ((ZJ::CThreadPool *)m_pThreadPool)->CancelAll();
+        delete (ZJ::CThreadPool *)m_pThreadPool;
         m_pThreadPool = nullptr;
     }
 }
@@ -47,14 +49,14 @@ bool CFTPClient::ConfigUserInfo(const std::string domain, int port, const std::s
 void CFTPClient::CheckFilesInfo(std::string sPath, std::string strFileListStr, std::list<FileInfo> &fileInfoList)
 {
     FileInfo fileInfo = {0};
-    std::vector<std::string> list = ZJ::Tool::CString::Split(strFileListStr,"\n");
+    std::vector<std::string> list = ZJ::CString::Split(strFileListStr,"\n");
     if (list.size() > 0) {
         std::vector<std::string>::iterator iterFile = list.begin();
         for (; iterFile != list.end(); iterFile++) {
             if (iterFile->size() == 0) continue;
             
             if (isUseListCmd) {
-                std::vector<std::string> listItem = ZJ::Tool::CString::Split(*iterFile, " ");
+                std::vector<std::string> listItem = ZJ::CString::Split(*iterFile, " ");
                 if (iterFile->length() > 0 && iterFile->c_str()[0] == 'd') {    //判断是否是文件夹
                     fileInfo.isDir = true;
                 }
@@ -79,9 +81,9 @@ void CFTPClient::CheckFilesInfo(std::string sPath, std::string strFileListStr, s
                     fileInfoList.push_back(fileInfo);
                 }
             } else {
-                std::vector<std::string> listItem = ZJ::Tool::CString::Split(*iterFile, ";");
+                std::vector<std::string> listItem = ZJ::CString::Split(*iterFile, ";");
                 for (std::string itemStr : listItem) {
-                    std::vector<std::string> values = ZJ::Tool::CString::Split(itemStr, "=");
+                    std::vector<std::string> values = ZJ::CString::Split(itemStr, "=");
                     if (values.size() == 2) {
                         if (values.front() == "Size") {
                             fileInfo.fileSize = atol(values.back().c_str());
@@ -109,12 +111,12 @@ void CFTPClient::CheckFilesInfo(std::string sPath, std::string strFileListStr, s
 
 void CFTPClient::QueryAllFiles(const std::string path, std::function<void(std::list<CFTPClient::FileInfo> list)> pCallback)
 {
-    ((ZJ::Tool::CThreadPool *)m_pThreadPool)->AddTask([path, pCallback](CFTPClient *self) {
+    ((ZJ::CThreadPool *)m_pThreadPool)->AddTask([path, pCallback](CFTPClient *self) {
         CNetRequest request(self, (CNetRequest::MODE_TYPE)(CNetRequest::MODE_TYPE_FTP | CNetRequest::MODE_TYPE_CUSTOMR));
         request.ConfigURL(self->m_sUrl);
         request.ConfigUserInfo(self->m_sUserName, self->m_sPassword);
         
-        std::string sPath = ZJ::Tool::CString::AppendComponentForPath(path, "");
+        std::string sPath = ZJ::CString::AppendComponentForPath(path, "");
         request.AddHeader((self->isUseListCmd ? "LIST " : "MLSD ") + sPath);
         
         long ret = 0;
@@ -139,8 +141,8 @@ bool CFTPClient::IsExist(const std::string path, bool isDir)
     request.ConfigUserInfo(m_sUserName, m_sPassword);
     
     std::string lastName = "";
-    std::string sPath = ZJ::Tool::CString::RemoveLastComponentForPath(path, lastName);
-    request.AddHeader(ZJ::Tool::CString::AppendComponentForPath(isUseListCmd ? "LIST " : "MLSD ", sPath));
+    std::string sPath = ZJ::CString::RemoveLastComponentForPath(path, lastName);
+    request.AddHeader(ZJ::CString::AppendComponentForPath(isUseListCmd ? "LIST " : "MLSD ", sPath));
     
     long ret = 0;
     request.Request([&ret](long code, std::string ctx, std::string err) {
@@ -170,12 +172,12 @@ bool CFTPClient::CreateDirectory(const std::string path)
     
     bool isCreate = false;
     std::string subPath = "";
-    std::vector<std::string> list = ZJ::Tool::CString::Split(path, "/");
+    std::vector<std::string> list = ZJ::CString::Split(path, "/");
     for (std::string str : list) {
         if (str.length() > 0) {
             request.ConfigUserInfo(m_sUserName, m_sPassword);
             request.ConfigURL(m_sUrl);
-            subPath = ZJ::Tool::CString::AppendComponentForPath(subPath, str);
+            subPath = ZJ::CString::AppendComponentForPath(subPath, str);
             request.AddHeader("MKD " + subPath);
             long ret = 0;
             request.Request([&ret](long code, std::string ctx, std::string err) {
@@ -262,7 +264,7 @@ bool CFTPClient::DownloadFile(const std::string url, const std::string fileDir, 
     m_pDownloader->SetRequestTimeout(timeout);
     m_pDownloader->SetProgessCallback(pProgessCallback);
     
-    m_pDownloader->Start(ZJ::Tool::CString::AppendComponentForPath(m_sUrl, url), fileDir, fileName, pReqsCallback);
+    m_pDownloader->Start(ZJ::CString::AppendComponentForPath(m_sUrl, url), fileDir, fileName, pReqsCallback);
     return true;
 }
 
@@ -277,6 +279,8 @@ bool CFTPClient::UploadFile(const std::string url, const std::string filePath, i
     m_pUploader->SetRequestTimeout(timeout);
     m_pUploader->SetProgessCallback(pProgessCallback);
     
-    m_pUploader->Start(ZJ::Tool::CString::AppendComponentForPath(m_sUrl, url), filePath, pReqsCallback);
+    m_pUploader->Start(ZJ::CString::AppendComponentForPath(m_sUrl, url), filePath, pReqsCallback);
     return true;
 }
+
+ZJ_NAMESPACE_END
