@@ -37,6 +37,7 @@
 		0C9F033225F23EF4008E4CE3 /* CNetRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */; };
 		0C9F033B25F23F6D008E4CE3 /* CJsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F033725F23F6D008E4CE3 /* CJsonObject.cpp */; };
 		0C9F033C25F23F6D008E4CE3 /* cJSONZJ.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */; };
+		0CFCC44125F9F4B000FAE6BA /* CFTPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CFCC43F25F9F4B000FAE6BA /* CFTPClient.cpp */; };
 		80A76C25677E819FA4EB123C /* libPods-ZJCrossCppDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4638FB0FCAFCC446EB026B /* libPods-ZJCrossCppDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,8 @@
 		0C9F033825F23F6D008E4CE3 /* cJSONZJ.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cJSONZJ.c; sourceTree = "<group>"; };
 		0C9F033925F23F6D008E4CE3 /* CJsonObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CJsonObject.hpp; sourceTree = "<group>"; };
 		0C9F033A25F23F6D008E4CE3 /* cJSONZJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cJSONZJ.h; sourceTree = "<group>"; };
+		0CFCC43F25F9F4B000FAE6BA /* CFTPClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFTPClient.cpp; sourceTree = "<group>"; };
+		0CFCC44025F9F4B000FAE6BA /* CFTPClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CFTPClient.hpp; sourceTree = "<group>"; };
 		395C8B3C1817639199957E2C /* Pods-ZJCrossCppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5C4638FB0FCAFCC446EB026B /* libPods-ZJCrossCppDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZJCrossCppDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D4F1C69D9F0377371C0E5C /* Pods-ZJCrossCppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.release.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 		0C9F032325F23E90008E4CE3 /* Net */ = {
 			isa = PBXGroup;
 			children = (
+				0CFCC43F25F9F4B000FAE6BA /* CFTPClient.cpp */,
+				0CFCC44025F9F4B000FAE6BA /* CFTPClient.hpp */,
 				0C9F032D25F23EF4008E4CE3 /* CNetRequest.cpp */,
 				0C9F032925F23EF4008E4CE3 /* CNetRequest.hpp */,
 				0C9F032425F23EF4008E4CE3 /* CNetRequestDownload.cpp */,
@@ -505,6 +510,7 @@
 				0C9F015D25F074C7008E4CE3 /* main.m in Sources */,
 				0C9F014F25F074C6008E4CE3 /* SceneDelegate.m in Sources */,
 				0C9F01CA25F08E2F008E4CE3 /* CString.cpp in Sources */,
+				0CFCC44125F9F4B000FAE6BA /* CFTPClient.cpp in Sources */,
 				0C9F01AA25F07531008E4CE3 /* CThread.cpp in Sources */,
 				0C9F01B225F07531008E4CE3 /* CGLVideoFBO.cpp in Sources */,
 				0C9F01AD25F07531008E4CE3 /* COpenGLEngine.cpp in Sources */,

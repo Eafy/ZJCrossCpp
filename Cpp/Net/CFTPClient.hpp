@@ -3,7 +3,7 @@
 //  ZJCrossCpp
 //
 //  Created by eafy on 2021/3/8.
-//  Copyright © 2021 JM. All rights reserved.
+//  Copyright © 2021 ZJ. All rights reserved.
 //
 
 #ifndef CFTPClient_hpp
