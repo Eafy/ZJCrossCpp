@@ -3,6 +3,7 @@ platform :ios, '9.0'
 target 'ZJCrossCppDemo' do
 #  use_frameworks!
 
+   pod 'ZJBaseUtils', '1.1.7'
    pod 'ZJCrossCpp',  :path =>'../ZJCrossCpp.podspec'
    
 end

@@ -56,7 +56,7 @@
 		0C9F016D25F074C7008E4CE3 /* ZJCrossCppDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJCrossCppDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9F017125F074C7008E4CE3 /* ZJCrossCppDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJCrossCppDemoUITests.m; sourceTree = "<group>"; };
 		0C9F017325F074C7008E4CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0CFCC45D25F9F8E500FAE6BA /* ZJCrossCpp.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZJCrossCpp.podspec; path = ../../ZJCrossCpp.podspec; sourceTree = "<group>"; };
+		0CFCC45D25F9F8E500FAE6BA /* ZJCrossCpp.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZJCrossCpp.podspec; path = ../../ZJCrossCpp.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		395C8B3C1817639199957E2C /* Pods-ZJCrossCppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.debug.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5C4638FB0FCAFCC446EB026B /* libPods-ZJCrossCppDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZJCrossCppDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D4F1C69D9F0377371C0E5C /* Pods-ZJCrossCppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJCrossCppDemo.release.xcconfig"; path = "Target Support Files/Pods-ZJCrossCppDemo/Pods-ZJCrossCppDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -449,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -502,7 +502,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

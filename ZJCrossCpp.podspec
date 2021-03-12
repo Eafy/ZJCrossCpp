@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   
   s.source       = { :git => "https://github.com/Eafy/ZJCrossCpp.git", :tag => "v#{s.version}" }
   s.libraries = 'c++'
-  s.dependency 'ZJLog', '1.1.5'
+  s.dependency 'ZJLog', '1.1.6'
   s.vendored_libraries = "Libs/iOS/**/*.a"
   s.resources = "Libs/iOS/**/*.a"
 
