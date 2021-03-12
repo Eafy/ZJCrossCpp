@@ -196,7 +196,14 @@ void CNetRequest::ConfigHeaders()
 
 void CNetRequest::SetMethodType(METHOD_TYPE type)
 {
+    m_nMethodType = type;
+    if (!m_pCurl) return;
     
+    if (m_nMethodType == METHOD_TYPE_POST) {
+        curl_easy_setopt(m_pCurl, CURLOPT_POST, true);
+    } else {
+        curl_easy_setopt(m_pCurl, CURLOPT_POST, false);
+    }
 }
 
 void CNetRequest::SetContentType(CONTENT_TYPE type)
@@ -231,9 +238,9 @@ std::string CNetRequest::BuildParameters()
 {
     if (m_nContentType == CONTENT_TYPE_JSON_RAW) {  //转Json
         if (m_sParaString.length() > 0) {
-            std::vector<std::string> map = ZJ::CString::Split(m_sParaString, "&");
+            std::vector<std::string> map = CString::Split(m_sParaString, "&");
             for (std::string str : map) {
-                std::vector<std::string> kv = ZJ::CString::Split(str, "=");
+                std::vector<std::string> kv = CString::Split(str, "=");
                 if (kv.size() >= 2) {
                     m_oParaJsonObj.Add(kv.at(0), kv.at(1));
                 }
@@ -275,7 +282,7 @@ std::string CNetRequest::BuildParameters()
             } else if (type == cJSONZJ_Object || type == cJSONZJ_Array) {
                 neb::CJsonObject obj;
                 m_oParaJsonObj.Get(keyT, obj);
-                sValue << ZJ::CString::EncodeToUTF8(obj.ToString());
+                sValue << CString::EncodeToUTF8(obj.ToString());
             }
             m_sParaString += sValue.str();
         }
@@ -479,7 +486,7 @@ void CNetRequest::Cancel()
         }
     } else if (m_bRequestState.load() == REQUEST_STATE_LOADED && m_pCurl) {
         curl_easy_reset(m_pCurl);
-        m_bRequestState.store(REQUEST_STATE_NONE);
+        m_bRequestState.store(REQUEST_STATE_CANCEL);
     }
 }
 

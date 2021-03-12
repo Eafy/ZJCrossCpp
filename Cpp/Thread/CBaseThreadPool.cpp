@@ -93,10 +93,8 @@ void *CBaseThreadPool::didRoutineThread(void *arg)
                 }
                 self->m_TrigCondition->Unlock();   //休眠前需要解锁，允许其他任务进入线程池
 
-                if (task && !self->m_bQuit && !task->m_bIsRunning) {
-                    task->m_bIsRunning = true;
+                if (task && !self->m_bQuit && !task->IsRunning()) {
                     self->_RunOperate(task);
-                    task->m_bIsRunning = false;
                 }
                 self->_DeleteTask(task);    //执行完任务释放任务内存
             }
@@ -144,6 +142,22 @@ void CBaseThreadPool::Unlock()
 void CBaseThreadPool::_DeleteTask(CThreadTask *task)
 {
     DeleteP(task);
+}
+
+CThreadTask *CBaseThreadPool::GetTask(uint64_t tag)
+{
+    if (tag <= 0) return nullptr;
+    
+    Lock();
+    CThreadTask *task = GetFirstTask();
+    while (task) {
+        if (task->m_nTag == tag) {
+            return task;
+        }
+    }
+    Unlock();
+    
+    return nullptr;
 }
 
 

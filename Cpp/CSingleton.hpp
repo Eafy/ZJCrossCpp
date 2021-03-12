@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <memory>
+#include "CDefType.hpp"
 
 ZJ_NAMESPACE_BEGIN
 

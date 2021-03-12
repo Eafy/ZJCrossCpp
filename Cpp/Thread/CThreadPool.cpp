@@ -12,17 +12,17 @@ ZJ_NAMESPACE_BEGIN
 
 void CThreadPool::_RunOperate(CThreadTask *task)
 {
-    task->m_Func();  //执行任务
+    task->Run();  //执行任务
 }
 
 void CThreadPool::CancelTask(uint64_t tag)
 {
     Lock();
 
-    CThreadTask *task = GetTask();
+    CThreadTask *task = GetFirstTask();
     while (task) {
         if (task->m_nTag == tag) {
-            if (!task->m_bIsRunning) {
+            if (!task->IsRunning()) {
                 SetTask(task->GetNextTask());
                 DeleteP(task);     //执行完任务释放内存
             }

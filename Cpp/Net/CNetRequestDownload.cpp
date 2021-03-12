@@ -67,10 +67,10 @@ void CNetRequestDownload::Start(const std::string url, const std::string fileDir
         
         std::string fileNameT = fileName;
         if (fileName.length() == 0) {   //文件名不存在，则使用服务器文件名称
-            std::vector<std::string> list = ZJ::CString::Split(url, "/");
+            std::vector<std::string> list = CString::Split(url, "/");
             fileNameT = list.back();
         }
-        std::string filePath = ZJ::CString::AppendComponentForPath(fileDir, fileNameT);
+        std::string filePath = CString::AppendComponentForPath(fileDir, fileNameT);
         FILE *file = fopen(filePath.c_str(), "ab+");
         if (file == nullptr) {
             OnRequestResult(m_pUserData, ERR_FILE_PATH_INVALID, "", "", "");

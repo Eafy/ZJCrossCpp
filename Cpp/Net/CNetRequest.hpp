@@ -150,9 +150,15 @@ public:
         }
     }
     
+    /// 添加Json对象请求参数
+    /// @param jsonObj Json对象
+    void AddParameter(neb::CJsonObject jsonObj) {
+        m_oParaJsonObj = jsonObj;
+    }
+    
     /// 移除请求参数
     /// @param key 字段Key
-    template <class T> void removeParameter(std::string key) {
+    void removeParameter(std::string key) {
         m_oParaJsonObj.Delete(key);
     }
     

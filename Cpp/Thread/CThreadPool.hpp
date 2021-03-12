@@ -24,7 +24,7 @@ public:
     DECLARE_SINGLETON_CLASS(CThreadPool);
     
     template<typename callable, typename... arguments>
-    void AddTask(callable&& func, arguments&&... args) {
+    uint64_t AddTask(callable&& func, arguments&&... args) {
         std::function<typename std::result_of<callable(arguments...)>::type()> task(std::bind(std::forward<callable>(func), std::forward<arguments>(args)...));
 
         if (!IsExit()) {
@@ -32,11 +32,14 @@ public:
             threadTask->m_Func = task;
             threadTask->m_nTag = (uint64_t)&func;
             _AddTask(threadTask);
+            
+            return threadTask->m_nTag;
         }
+        return 0;
     }
     
     template<typename callable, typename... arguments>
-    void AddTask(uint64_t tag, callable&& func, arguments&&... args) {
+    uint64_t AddTask(uint64_t tag, callable&& func, arguments&&... args) {
         std::function<typename std::result_of<callable(arguments...)>::type()> task(std::bind(std::forward<callable>(func), std::forward<arguments>(args)...));
 
         if (!IsExit()) {
@@ -44,18 +47,25 @@ public:
             threadTask->m_Func = task;
             threadTask->m_nTag = tag;
             _AddTask(threadTask);
+            
+            return threadTask->m_nTag;
         }
+        return 0;
     }
     
     template<typename callable, typename... arguments>
-    void OnceTask(callable&& func, arguments&&... args) {
+    uint64_t OnceTask(callable&& func, arguments&&... args) {
         std::function<typename std::result_of<callable(arguments...)>::type()> task(std::bind(std::forward<callable>(func), std::forward<arguments>(args)...));
 
         if (!IsExit()) {
             CThreadTask *threadTask = new CThreadTask();  //产生一个新的任务
             threadTask->m_Func = task;
             _AddTask(threadTask);
+            
+            return threadTask->m_nTag;
         }
+        
+        return 0;
     }
 
     /**

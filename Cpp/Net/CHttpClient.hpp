@@ -13,12 +13,11 @@
 #include <mutex>
 #include <map>
 #include "CSingleton.hpp"
-#include "CBaseThreadPool.hpp"
 #include "CNetRequest.hpp"
 
 ZJ_NAMESPACE_BEGIN
 
-class CHttpClient: CBaseThreadPool
+class CHttpClient
 {
 public:
     typedef std::function<void(void *userData, const std::string strContent)> OnHttpClientCompletionCB;
@@ -30,13 +29,32 @@ public:
     ~CHttpClient();
     DECLARE_SINGLETON_CLASS(CHttpClient);
     
-    CNetRequest *Build(const std::string url, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB = nullptr);
+    void SetUserData(void *pUserData) {
+        m_pUserData = pUserData;
+    }
     
-    void Request(CNetRequest *request);
+    /// 取消所有请求
+    void CancelAll();
+    
+    /// 取消请求
+    /// @param tag 请求标签
+    void Cancel(uint64_t tag);
+    
+    /// 请求
+    /// @param httpMethod 请求方式
+    /// @param url 请求地址
+    /// @param paramMap 参数字典
+    /// @param comCB 成功回调
+    /// @param failCB 失败回调
+    /// @param progressCB 进度回调
+    /// @return 请求标签，可用作取消，<=0标识创建失败
+    uint64_t Request(CNetRequest::METHOD_TYPE httpMethod, const std::string url, neb::CJsonObject paramMap, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB = nullptr);
     
 private:
+    void *m_pUserData = nullptr;
     void *m_pThreadPool = nullptr;
     
+    std::map<uint64_t, CNetRequest*> m_TaskMap;
 };
 
 ZJ_NAMESPACE_END
