@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import <ZJBaseUtils/ZJBaseUtils.h>
 #import "CNetRequestGet.hpp"
 #import "CNetRequestPost.hpp"
 #import "CNetRequestDownload.hpp"
@@ -13,6 +14,8 @@
 using namespace ZJ;
 
 @interface ViewController ()
+
+@property (nonatomic,strong) UIScrollView *scrollView;
 
 @property (nonatomic,assign) CNetRequestGet *requestGet;
 @property (nonatomic,assign) CNetRequestPost *requestPost;
@@ -51,5 +54,39 @@ using namespace ZJ;
 //    self.requestDownload->Start("www.caimomo.com.cn/download/oem/cy.zip", fileDir.UTF8String);
 }
 
+- (UIScrollView *)scrollView
+{
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        _scrollView.contentSize = self.view.bounds.size;
+        _scrollView.pagingEnabled = NO;
+        _scrollView.scrollEnabled = YES;
+        _scrollView.bounces = NO;
+        _scrollView.showsVerticalScrollIndicator = YES;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.backgroundColor = self.view.backgroundColor;
+        if (@available(iOS 11.0, *)) {
+            _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        [self.view addSubview:_scrollView];
+    }
+    
+    return _scrollView;
+}
+
++ (ZJButton *)demoTyleBtn:(ZJButton *)btn {
+    ZJButton *btn1 = [[ZJButton alloc] initWithFrame:CGRectMake(30, btn ? btn.zj_bottom + 15 :120, kZJScreenWidth -60, 48)];
+    btn1.style = ZJButtonStyleColor;
+    return btn1;
+}
+
+- (void)bindTouchUpInside:(ZJButton *)btn toClass:(Class)cls
+{
+    [btn zj_addSingleTap:^(UITapGestureRecognizer * _Nonnull obj) {
+        ZJBaseViewController *vc = [[cls alloc] init];
+        vc.title = btn.norTitle;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+}
 
 @end
