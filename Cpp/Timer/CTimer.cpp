@@ -8,6 +8,9 @@
 
 #include "CTimer.hpp"
 #include <future>
+#include <time.h>
+#include <sys/time.h>
+#include <stdlib.h>
 
 ZJ_NAMESPACE_BEGIN
 
@@ -85,5 +88,95 @@ void CTimer::DeleteThread()
         m_Thread = nullptr;
     }
 }
+
+#pragma mark -
+
+uint64_t CTimer::GetTickCount()
+{
+    uint64_t msTime = 0;
+
+#if defined(__APPLE__)  //iOS
+    if (__builtin_available(iOS 10.0, *)) {
+        struct timespec abstime;
+        clock_gettime(CLOCK_REALTIME, &abstime);
+        msTime = ((uint64_t)abstime.tv_sec) * 1000 + ((uint64_t)abstime.tv_nsec) / 1000000;
+    } else {
+        struct timeval abstime;
+        gettimeofday(&abstime, NULL);
+        msTime = ((uint64_t)abstime.tv_sec) * 1000 + ((uint64_t)abstime.tv_usec) / 1000;
+    }
+#else
+    struct timespec abstime;
+    clock_gettime(CLOCK_REALTIME, &abstime);
+
+    msTime = ((uint64_t)abstime.tv_sec) * 1000 + ((uint64_t)abstime.tv_nsec) / 1000000;   //需要强制转long long
+#endif
+
+    return msTime;
+}
+
+std::string CTimer::GetFormatTime(const std::string sFormat)
+{
+    time_t timep;
+    time (&timep);
+
+    char tmp[64];
+    strftime(tmp, sizeof(tmp), sFormat.c_str(), localtime(&timep));
+
+    return std::string(tmp);
+}
+
+struct tm *CTimer::GetUTCTime(long long secTime)
+{
+    time_t timep;
+    if (secTime) {
+        timep = secTime;
+    } else {
+        time (&timep);
+    }
+
+    struct tm *data = gmtime(&timep);
+    data->tm_year += 1900;
+    data->tm_mon += 1;
+
+    return data;
+}
+
+int64_t CTimer::GetUTCTimeSec()
+{
+    int64_t msTime = 0;
+
+#if defined(__APPLE__)  //iOS
+    if (__builtin_available(iOS 10.0, *)) {
+        struct timespec abstime;
+        clock_gettime(CLOCK_REALTIME, &abstime);
+        msTime = ((int64_t)abstime.tv_sec) * 1000 + ((int64_t)abstime.tv_nsec) / 1000000;
+    } else {
+        struct timeval abstime;
+        gettimeofday(&abstime, NULL);
+        msTime = ((int64_t)abstime.tv_sec) * 1000 + ((int64_t)abstime.tv_usec) / 1000;
+    }
+#else
+    struct timespec abstime;
+    clock_gettime(CLOCK_REALTIME, &abstime);
+
+    msTime = (int64_t)abstime.tv_sec;
+#endif
+
+    return msTime;
+}
+
+int CTimer::GetTimeDifference()
+{
+    time_t now = time(NULL);
+    struct tm *gmTime = gmtime(&now);
+    if (gmTime) {
+        return (int)difftime(now, mktime(gmTime));
+    }
+
+    return 0;
+}
+
+
 
 ZJ_NAMESPACE_END
