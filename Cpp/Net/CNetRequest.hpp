@@ -29,6 +29,19 @@ public:
         MODE_TYPE_CUSTOMR = 1 << 3,
     };
     
+    enum METHOD_TYPE {
+        METHOD_TYPE_NONE,
+        METHOD_TYPE_GET,
+        METHOD_TYPE_POST
+    };
+    
+    enum CONTENT_TYPE {
+        CONTENT_TYPE_NONE = 0,
+        CONTENT_TYPE_X_WWW_FORM_URLENCODED,
+        CONTENT_TYPE_JSON,      //请求参数为json字符串
+        CONTENT_TYPE_JSON_RAW,  //请求参数为json格式
+    };
+    
     enum ERR_CODE {
         ERR_CANCEL = 999,       //已取消
         
@@ -43,13 +56,6 @@ public:
         ERR_HOST_NOT_FIND = -1003,      //Host错误
         ERR_HOST_NOT_CONNECT = -1004,   //Host不能连接
         ERR_NET_CONN_LOST = -1005,      //网络连接异常
-    };
-    
-    enum CONTENT_TYPE {
-        CONTENT_TYPE_NONE = 0,
-        CONTENT_TYPE_X_WWW_FORM_URLENCODED,
-        CONTENT_TYPE_JSON,      //请求参数为json字符串
-        CONTENT_TYPE_JSON_RAW,  //请求参数为json格式
     };
     
     /// 请求回调
@@ -88,11 +94,14 @@ public:
         m_nModeType = mode;
     }
     
+    /// 设置请求方式
+    /// @param type METHOD_TYPE
+    void SetMethodType(METHOD_TYPE type);
+    
     /// 获取请求CURL句柄
     /// @param url 请求地址
-    /// @param bAppendUrl 参数是否追加到Url链接上
     /// @param bProgress 是否开启进度
-    void *ConfigURL(const std::string url, bool bAppendUrl = false, bool bProgress = false);
+    void *ConfigURL(const std::string url, bool bProgress = false);
     
     /// 设置内容格式
     /// @param type CONTENT_TYPE
@@ -158,6 +167,11 @@ public:
     /// @param pCallback 结果的回调，设置null无效
     void Request(std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback = nullptr);
     
+    /// 开始请求(会自动配置)
+    /// @param url 请求地址
+    /// @param pCallback 结果的回调，设置null无效
+    void Request(const std::string url, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback = nullptr);
+    
     /// 设置响应回调(一旦代理了OnRequestResult将无效)
     /// @param pCallback 回调(状态码, 接收内容, 错误提示)
     void SetResponseCallback(std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback) {
@@ -217,6 +231,10 @@ private:
     /// 显示强求后信息
     void ShowRequestAfterInfo();
     
+    /// 组装URL
+    /// @param url 请求URL
+    std::string BuildURL(const std::string url);
+    
 public:
     void *m_pUserData = nullptr;
     bool m_bIsShowRequestLog = true;        //显示请求信息
@@ -228,6 +246,8 @@ protected:
     
 private:
     MODE_TYPE m_nModeType = MODE_TYPE_HTTP;
+    METHOD_TYPE m_nMethodType = METHOD_TYPE_NONE;
+    
     std::string m_sUrl = "";          //请求连接
     void *m_pCurl = nullptr;
     std::string m_sSSLFilePath = "";    //Cer证书路径

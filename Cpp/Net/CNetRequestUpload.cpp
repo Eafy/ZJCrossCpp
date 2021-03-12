@@ -46,7 +46,7 @@ void CNetRequestUpload::Start(const std::string url, const std::string filePath,
     if (IsRunning()) return;
     m_nFirstProgress = QueryFileUploadedSize(url);
     
-    CURL *cUrl = (CURL *)ConfigURL(url, false, true);
+    CURL *cUrl = (CURL *)ConfigURL(url, true);
     if (cUrl) {
         FILE *file = fopen(filePath.c_str(), "rb");
         if (file == nullptr) {

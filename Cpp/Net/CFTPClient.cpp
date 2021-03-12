@@ -8,7 +8,6 @@
 
 #include "CFTPClient.hpp"
 #include "CString.hpp"
-#include <string.h>
 #include "CThreadPool.hpp"
 
 ZJ_NAMESPACE_BEGIN

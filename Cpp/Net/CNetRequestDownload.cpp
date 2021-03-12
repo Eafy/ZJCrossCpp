@@ -52,7 +52,7 @@ void CNetRequestDownload::Start(const std::string url, const std::string fileDir
     }
     m_nTotalProgress = QueryFileSize(url);
     
-    CURL *cUrl = (CURL *)ConfigURL(url, false, true);
+    CURL *cUrl = (CURL *)ConfigURL(url, true);
     if (cUrl) {
         DIR *dir = opendir(fileDir.c_str());
         if (!dir) {     //判断文件夹是否存在，不存在则创建

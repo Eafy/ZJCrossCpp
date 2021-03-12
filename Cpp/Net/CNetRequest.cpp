@@ -187,6 +187,11 @@ void CNetRequest::ConfigHeaders()
     }
 }
 
+void CNetRequest::SetMethodType(METHOD_TYPE type)
+{
+    
+}
+
 void CNetRequest::SetContentType(CONTENT_TYPE type)
 {
     RemoveHeader();
@@ -272,6 +277,44 @@ std::string CNetRequest::BuildParameters()
     return m_sParaString;
 }
 
+
+std::string CNetRequest::BuildURL(const std::string url)
+{
+    std::string sURL = url;
+    if (m_nMethodType == METHOD_TYPE_GET) {
+        if (m_sParaString.length() > 0) {
+            if (sURL.find("?") != std::string::npos) {   //链接已附带参数
+                sURL += "&" + m_sParaString;
+            } else {
+                sURL += "?" + m_sParaString;
+            }
+        }
+    } else {
+        BuildParameters();
+        int64_t length = m_sParaString.length();
+        if (length > 0) {
+            curl_easy_setopt(m_pCurl, CURLOPT_POSTFIELDS, m_sParaString.c_str());
+            curl_easy_setopt(m_pCurl, CURLOPT_POSTFIELDSIZE, length);
+        }
+    }
+    
+    curl_easy_setopt(m_pCurl, CURLOPT_ERRORBUFFER, m_pErrorBuf);
+    CURLcode code = curl_easy_setopt(m_pCurl, CURLOPT_URL, sURL.c_str());
+    if (code != CURLE_OK) {
+        CPrintfE("Failed to set url:%s, error:%s", sURL.c_str(), m_pErrorBuf);
+        RemoveCurl(&m_pCurl);
+        OnRequestResult(m_pUserData, ERR_URL_INVALID, "", "", sURL);
+        return "";
+    }
+    
+    /*配置请求方式*/
+    if (m_nMethodType == METHOD_TYPE_POST) {
+        curl_easy_setopt(m_pCurl, CURLOPT_POST, true);
+    }
+    
+    return sURL;
+}
+
 #pragma mark -
 
 long CNetRequest::ParseResponseData()
@@ -298,10 +341,9 @@ long CNetRequest::ParseResponseData()
     return responseCode;
 }
 
-CURL *CNetRequest::ConfigURL(const std::string url, bool bAppendUrl, bool bProgress)
+CURL *CNetRequest::ConfigURL(const std::string url, bool bProgress)
 {
     if (IsRunning()) return m_pCurl;
-    m_sUrl = url;
     
     if (!m_pCurl) {
         m_pCurl = curl_easy_init();
@@ -311,34 +353,14 @@ CURL *CNetRequest::ConfigURL(const std::string url, bool bAppendUrl, bool bProgr
             return nullptr;
         }
     }
+    
     m_bRequestState.store(REQUEST_STATE_LOADED);
-    std::string sURL = url;
-    
-    BuildParameters();
-    if (bAppendUrl) {
-        if (m_sParaString.length() > 0) {
-            if (sURL.find("?") != std::string::npos) {   //链接已附带参数
-                sURL += "&" + m_sParaString;
-            } else {
-                sURL += "?" + m_sParaString;
-            }
-        }
-    } else {
-        BuildParameters();
-        int64_t length = m_sParaString.length();
-        if (length > 0) {
-            curl_easy_setopt(m_pCurl, CURLOPT_POSTFIELDS, m_sParaString.c_str());
-            curl_easy_setopt(m_pCurl, CURLOPT_POSTFIELDSIZE, length);
-        }
-    }
-    
-    curl_easy_setopt(m_pCurl, CURLOPT_ERRORBUFFER, m_pErrorBuf);
-    CURLcode code = curl_easy_setopt(m_pCurl, CURLOPT_URL, sURL.c_str());
-    if (code != CURLE_OK) {
-        CPrintfE("Failed to set url:%s, error:%s", sURL.c_str(), m_pErrorBuf);
-        RemoveCurl(&m_pCurl);
+    m_sUrl = BuildURL(url);
+    if (m_sUrl.length() == 0) {
+        m_bRequestState.store(REQUEST_STATE_NONE);
         return nullptr;
     }
+    ConfigHeaders();
     
     curl_easy_setopt(m_pCurl, CURLOPT_NOSIGNAL, 1L);     //毫秒超时需要设置
     curl_easy_setopt(m_pCurl, CURLOPT_CONNECTTIMEOUT_MS, m_nConnectTimeout); //连接超时
@@ -380,8 +402,6 @@ CURL *CNetRequest::ConfigURL(const std::string url, bool bAppendUrl, bool bProgr
         std::string userInfo = m_sUserName + ":" + m_sPassword;
         curl_easy_setopt(m_pCurl, CURLOPT_USERPWD, userInfo.c_str());
     }
-    
-    ConfigHeaders();
     
     return m_pCurl;
 }
@@ -425,6 +445,16 @@ void CNetRequest::Request(std::function<void(long statusCode, std::string strRec
             code = ERR_CANCEL;
         }
         Clear();
+    }
+}
+
+void CNetRequest::Request(const std::string url, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback)
+{
+    if (pCallback) m_pRespCallback = pCallback;
+    
+    CURL *cUrl = ConfigURL(url);
+    if (cUrl) {
+        Request();
     }
 }
 
