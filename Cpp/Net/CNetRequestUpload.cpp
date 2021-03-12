@@ -41,7 +41,7 @@ int64_t CNetRequestUpload::QueryFileUploadedSize(const std::string url)
     return length;
 }
 
-void CNetRequestUpload::Start(const std::string url, const std::string filePath, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback)
+void CNetRequestUpload::Start(const std::string url, const std::string filePath, OnNetRequestResponseCB pCallback)
 {
     if (IsRunning()) return;
     m_nFirstProgress = QueryFileUploadedSize(url);

@@ -23,7 +23,7 @@ public:
     /// @param url 远程服务器上传地址
     /// @param filePath 本地文件路径
     /// @param pCallback 上传进度
-    void Start(const std::string url, const std::string filePath, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback = nullptr);
+    void Start(const std::string url, const std::string filePath, OnNetRequestResponseCB pCallback = nullptr);
     
     /// 设置进度回调
     /// @param pCallback 回调

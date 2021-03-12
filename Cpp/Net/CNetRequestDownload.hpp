@@ -24,7 +24,7 @@ public:
     /// @param fileDir 下载目录
     /// @param fileName 文件名称
     /// @param pCallback 下载进度
-    void Start(const std::string url, const std::string fileDir, const std::string fileName = "", std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback = nullptr);
+    void Start(const std::string url, const std::string fileDir, const std::string fileName = "", OnNetRequestResponseCB pCallback = nullptr);
     
     /// 设置进度回调
     /// @param pCallback 回调

@@ -43,10 +43,15 @@ CNetRequest::CNetRequest(void *pUserData, MODE_TYPE mode)
 
 CNetRequest::~CNetRequest()
 {
-    Cancel();
-    m_pRespCallback = nullptr;
-    while (m_bRequestState.load() != REQUEST_STATE_END) {
-        usleep(5);
+    if (IsRunning()) {
+        m_pResponseCallback = nullptr;
+        m_pProgressCallback = nullptr;
+        Cancel();
+        while (m_bRequestState.load() != REQUEST_STATE_END) {
+            usleep(5);
+        }
+    } else {
+        Clear();
     }
         
     if (m_pErrorBuf) {
@@ -64,6 +69,8 @@ void CNetRequest::Clear()
     m_sUserName = "";
     m_sPassword = "";
     
+    m_pResponseCallback = nullptr;
+    m_pProgressCallback = nullptr;
     m_bRequestState.store(REQUEST_STATE_END);
 }
 
@@ -406,19 +413,23 @@ CURL *CNetRequest::ConfigURL(const std::string url, bool bProgress)
     return m_pCurl;
 }
 
-void CNetRequest::Request(std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback)
+void CNetRequest::Request(OnNetRequestResponseCB pCallback)
 {
     if (IsRunning()) {
         return;
     } else if (m_pCurl) {
         m_bRequestState.store(REQUEST_STATE_REQUESTING);
-        if (pCallback) {
-            m_pRespCallback = pCallback;
-        }
+        if (pCallback) m_pResponseCallback = pCallback;
         m_sResponseBuf = "";
         m_sResponseHeader = "";
         m_sResponseBody = "";
         ShowRequestBeforeInfo();
+        
+        if (m_pProgressCallback) {
+            curl_easy_setopt(m_pCurl, CURLOPT_XFERINFOFUNCTION, OnProgressResultCallback);
+            curl_easy_setopt(m_pCurl, CURLOPT_XFERINFODATA, this);
+            curl_easy_setopt(m_pCurl, CURLOPT_NOPROGRESS, 0);
+        }
         
         m_nRespCode = curl_easy_perform(m_pCurl);
         
@@ -448,9 +459,9 @@ void CNetRequest::Request(std::function<void(long statusCode, std::string strRec
     }
 }
 
-void CNetRequest::Request(const std::string url, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback)
+void CNetRequest::Request(const std::string url, OnNetRequestResponseCB pCallback)
 {
-    if (pCallback) m_pRespCallback = pCallback;
+    if (pCallback) m_pResponseCallback = pCallback;
     
     CURL *cUrl = ConfigURL(url);
     if (cUrl) {
@@ -504,15 +515,19 @@ size_t CNetRequest::OnWriterRecvData(char *data, size_t size, size_t nmemb, void
 }
 
 void CNetRequest::OnRequestResult(void *userData, long statusCode, std::string strRecvHeader, std::string strRecvBody, const std::string strError) {
-    if (m_pRespCallback) {
-        m_pRespCallback(statusCode, strRecvBody, strError);
+    if (m_pResponseCallback) {
+        m_pResponseCallback(userData, statusCode, strRecvHeader, strRecvBody, strError);
     } else {
         CPrintfW("No set receive proxy interface: %s, StatusCode: %ld, RespCode:%ld, Header: %s, Body: %s, Error: %s", m_sUrl.c_str(), statusCode, m_nRespCode, strRecvHeader.c_str(), strRecvBody.c_str(), strError.c_str());
     }
 }
 
 void CNetRequest::OnProgressResult(void *userData, long long dlTotal, long long dlNow, long long ulTotal, long long ulNow) {
-    CPrintfW("No set progress proxy interface: %s, download: %lld/%lld upload: %lld/%lld", m_sUrl.c_str(), dlTotal, dlNow, ulTotal, ulNow);
+    if (m_pProgressCallback) {
+        m_pProgressCallback(userData, dlTotal, dlNow, ulTotal, ulNow);
+    } else {
+        CPrintfW("No set progress proxy interface: %s, download: %lld/%lld upload: %lld/%lld", m_sUrl.c_str(), dlTotal, dlNow, ulTotal, ulNow);
+    }
 }
 
 ZJ_NAMESPACE_END

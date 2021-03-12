@@ -43,7 +43,7 @@ int64_t CNetRequestDownload::QueryFileSize(const std::string url)
     return length;
 }
 
-void CNetRequestDownload::Start(const std::string url, const std::string fileDir, const std::string fileName, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback)
+void CNetRequestDownload::Start(const std::string url, const std::string fileDir, const std::string fileName, OnNetRequestResponseCB pCallback)
 {
     if (IsRunning()) return;
     if (fileDir.length() == 0) {

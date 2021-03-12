@@ -119,7 +119,7 @@ void CFTPClient::QueryAllFiles(const std::string path, std::function<void(std::l
         request.AddHeader((self->isUseListCmd ? "LIST " : "MLSD ") + sPath);
         
         long ret = 0;
-        request.Request([&ret](long code, std::string ctx, std::string err) {
+        request.Request([&ret](void *userData, long code, std::string header, std::string ctx, std::string err) {
             ret = code;
         });
         
@@ -144,7 +144,7 @@ bool CFTPClient::IsExist(const std::string path, bool isDir)
     request.AddHeader(ZJ::CString::AppendComponentForPath(isUseListCmd ? "LIST " : "MLSD ", sPath));
     
     long ret = 0;
-    request.Request([&ret](long code, std::string ctx, std::string err) {
+    request.Request([&ret](void *userData, long code, std::string header, std::string ctx, std::string err) {
         ret = code;
     });
     
@@ -179,7 +179,7 @@ bool CFTPClient::CreateDirectory(const std::string path)
             subPath = ZJ::CString::AppendComponentForPath(subPath, str);
             request.AddHeader("MKD " + subPath);
             long ret = 0;
-            request.Request([&ret](long code, std::string ctx, std::string err) {
+            request.Request([&ret](void *userData, long code, std::string header, std::string ctx, std::string err) {
                 ret = code;
             });
             
@@ -206,7 +206,7 @@ bool CFTPClient::DeleteDirectory(const std::string path)
     request.ConfigURL(m_sUrl);
     request.AddHeader("RMD " + path);
     long ret = 0;
-    request.Request([&ret](long code, std::string ctx, std::string err) {
+    request.Request([&ret](void *userData, long code, std::string header, std::string ctx, std::string err) {
         ret = code;
     });
     if (ret != 0 && (request.GetError().find("250") != std::string::npos ||     //请求的文件操作完成
@@ -224,7 +224,7 @@ bool CFTPClient::DeleteFile(const std::string path)
     request.ConfigURL(m_sUrl);
     request.AddHeader("DELE " + path);
     long ret = 0;
-    request.Request([&ret](long code, std::string ctx, std::string err) {
+    request.Request([&ret](void *userData, long code, std::string header, std::string ctx, std::string err) {
         ret = code;
     });
     if (ret != 0 && request.GetError().find("250") != std::string::npos) {
@@ -242,7 +242,7 @@ bool CFTPClient::MoveFile(const std::string fromPath, const std::string toPath)
     request.AddHeader("RNFR " + fromPath);
     request.AddHeader("RNTO " + toPath);
     long ret = 0;
-    request.Request([&ret](long code, std::string ctx, std::string err) {
+    request.Request([&ret](void *userData, long code, std::string header, std::string ctx, std::string err) {
         ret = code;
     });
     if (ret != 0 && request.GetError().find("250") != std::string::npos) {
@@ -263,7 +263,11 @@ bool CFTPClient::DownloadFile(const std::string url, const std::string fileDir, 
     m_pDownloader->SetRequestTimeout(timeout);
     m_pDownloader->SetProgessCallback(pProgessCallback);
     
-    m_pDownloader->Start(ZJ::CString::AppendComponentForPath(m_sUrl, url), fileDir, fileName, pReqsCallback);
+    m_pDownloader->Start(ZJ::CString::AppendComponentForPath(m_sUrl, url), fileDir, fileName, [pReqsCallback](void *userData, long code, std::string header, std::string ctx, std::string err) {
+        if (pReqsCallback) {
+            pReqsCallback(code, ctx, err);
+        }
+    });
     return true;
 }
 
@@ -278,7 +282,11 @@ bool CFTPClient::UploadFile(const std::string url, const std::string filePath, i
     m_pUploader->SetRequestTimeout(timeout);
     m_pUploader->SetProgessCallback(pProgessCallback);
     
-    m_pUploader->Start(ZJ::CString::AppendComponentForPath(m_sUrl, url), filePath, pReqsCallback);
+    m_pUploader->Start(ZJ::CString::AppendComponentForPath(m_sUrl, url), filePath, [pReqsCallback](void *userData, long code, std::string header, std::string ctx, std::string err) {
+        if (pReqsCallback) {
+            pReqsCallback(code, ctx, err);
+        }
+    });
     return true;
 }
 

@@ -58,7 +58,7 @@ public:
         ERR_NET_CONN_LOST = -1005,      //网络连接异常
     };
     
-    /// 请求回调
+    /// 结果回调（重载）
     /// @param userData 用户数据(透传)，默认空
     /// @param statusCode http访问的状态码，正常的查看http状态码，部分异常查看HTTP_ERR_CODE
     /// @param strRecvHeader 接收到的信息头
@@ -66,13 +66,19 @@ public:
     /// @param strError CURL解析到的错误
     virtual void OnRequestResult(void *userData, long statusCode, std::string strRecvHeader, std::string strRecvBody, const std::string strError);
 
-    /// 进度回调
+    /// 进度回调（重载）
     /// @param userData 用户数据(透传)，默认空
     /// @param dlTotal 下载总长度
     /// @param dlNow 下载进度
     /// @param ulTotal 上传总长度
     /// @param ulNow 上传进度
     virtual void OnProgressResult(void *userData, long long dlTotal, long long dlNow, long long ulTotal, long long ulNow);
+    
+    /// 结果回调（代理）
+    typedef std::function<void(void *userData, long statusCode, std::string strRecvHeader, std::string strRecvBody, const std::string strError)> OnNetRequestResponseCB;
+    
+    /// 进度回调（代理）
+    typedef std::function<void(void *userData, long long dlTotal, long long dlNow, long long ulTotal, long long ulNow)> OnNetRequestProgressCB;
     
 private:
     enum REQUEST_STATE {
@@ -165,17 +171,23 @@ public:
     
     /// 开始请求
     /// @param pCallback 结果的回调，设置null无效
-    void Request(std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback = nullptr);
+    void Request(OnNetRequestResponseCB pCallback = nullptr);
     
     /// 开始请求(会自动配置)
     /// @param url 请求地址
     /// @param pCallback 结果的回调，设置null无效
-    void Request(const std::string url, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback = nullptr);
+    void Request(const std::string url, OnNetRequestResponseCB pCallback = nullptr);
     
-    /// 设置响应回调(一旦代理了OnRequestResult将无效)
-    /// @param pCallback 回调(状态码, 接收内容, 错误提示)
-    void SetResponseCallback(std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pCallback) {
-        m_pRespCallback = pCallback;
+    /// 设置响应回调，代理了OnRequestResult设置无效
+    /// @param pCallback 回调
+    void SetResponseCallback(OnNetRequestResponseCB pCallback) {
+        m_pResponseCallback = pCallback;
+    }
+    
+    /// 设置进度回调，请求过程设置无效，代理了OnProgressResult设置无效
+    /// @param pCallback 回调
+    void SetProgressCallback(OnNetRequestProgressCB pCallback) {
+        m_pProgressCallback = pCallback;
     }
     
     /// 取消
@@ -267,7 +279,8 @@ private:
     std::string m_sResponseBody = "";
     char *m_pErrorBuf = nullptr;            //错误信息buffer
     std::atomic<REQUEST_STATE> m_bRequestState;         //请求状态
-    std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> m_pRespCallback = nullptr;    //结果回调
+    OnNetRequestResponseCB m_pResponseCallback = nullptr;    //结果回调
+    OnNetRequestProgressCB m_pProgressCallback = nullptr;   //进度回调
 };
 
 ZJ_NAMESPACE_END
