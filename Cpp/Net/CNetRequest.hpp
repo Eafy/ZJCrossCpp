@@ -47,9 +47,10 @@ public:
         
         ERR_NoERROR = 0,     //无错误
         
-        ERR_OBJ_HANDLE_INVALID = -100,        //句柄对象无效
-        ERR_FILE_PATH_INVALID = -101,   //文件路径无效
-        ERR_USER_INFO_ERROR = -102,     //用户信息错误
+        ERR_OBJ_INIT_FAILED = -100,        //句柄初始化失败
+        ERR_OBJ_NOT_EXIST = -101,           //句柄对象不存在
+        ERR_FILE_PATH_INVALID = -110,   //文件路径无效
+        ERR_USER_INFO_ERROR = -120,     //用户信息错误
         
         ERR_TIMEOUT = -1001,            //访问超时
         ERR_URL_INVALID = -1002,        //URL无效

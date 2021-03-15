@@ -333,7 +333,7 @@ std::string CNetRequest::BuildURL(const std::string url)
 
 long CNetRequest::ParseResponseData()
 {
-    if (!m_pCurl) return ERR_OBJ_HANDLE_INVALID;
+    if (!m_pCurl) return ERR_OBJ_NOT_EXIST;
     if (m_nModeType & MODE_TYPE_FTP) {  //FTP模式不检测头
         m_sResponseBody = m_sResponseBuf;
         return ERR_NoERROR;
@@ -363,7 +363,7 @@ CURL *CNetRequest::ConfigURL(const std::string url, bool bProgress)
         m_pCurl = curl_easy_init();
         if (m_pCurl == nullptr) {
             CPrintfE("Failed to create CURL connection");
-            OnRequestResult(m_pUserData, ERR_OBJ_HANDLE_INVALID, "", "", "");
+            OnRequestResult(m_pUserData, ERR_OBJ_INIT_FAILED, "", "", "");
             return nullptr;
         }
     }
