@@ -24,6 +24,7 @@ public:
     struct FileInfo {
         unsigned long fileSize;           //文件大小
         std::string fileName;             //文件名称
+        std::string fileDir;              //文件上一级目录
         std::string filePath;             //文件完整路径
         std::string time;                 //时间
         bool isDir;                       //是否是目录
@@ -40,9 +41,14 @@ public:
     /// @param password 用户密码
     bool ConfigUserInfo(const std::string domain, int port, const std::string userName, const std::string password);
     
-    /// 查询所有文件
+    /// 异步查询所有文件(只查询下一级目录)
     /// @param path 路径
-    void QueryAllFiles(const std::string path, std::function<void(std::list<CFTPClient::FileInfo> list)> pCallback);
+    /// @param pCallback 回调
+    void QueryFilesASync(const std::string path, std::function<void(std::list<CFTPClient::FileInfo> list)> pCallback);
+    
+    /// 同步查询所有文件(只查询下一级目录)
+    /// @param path 路径
+    std::list<CFTPClient::FileInfo> QueryFilesSync(const std::string path);
     
     /// 是否存在文件或文件夹
     /// @param path 文件路径
@@ -76,6 +82,15 @@ public:
     /// @return true，启动成功，false，有文件正在下载
     bool DownloadFile(const std::string url, const std::string fileDir, const std::string fileName, int timeout = 0, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pReqsCallback = nullptr, std::function<void(const std::string url, long long dlTotal, long long dlNow)> pProgessCallback = nullptr);
     
+    /// 是否正在下载
+    bool IsDownloading();
+    /// 取消下载
+    void CancelDownload();
+    /// 暂停下载
+    void PauseDownload();
+    /// 恢复下载
+    void ResumeDownload();
+    
     /// 上传文件
     /// @param url 服务器上传短链接地址
     /// @param filePath 本地文件地址
@@ -84,6 +99,15 @@ public:
     /// @param pProgessCallback 进度回调
     /// @return true，启动成功，false，有文件正在上传
     bool UploadFile(const std::string url, const std::string filePath, int timeout = 0, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pReqsCallback = nullptr, std::function<void(const std::string url, long long dlTotal, long long dlNow)> pProgessCallback = nullptr);
+    
+    /// 是否正在上传
+    bool IsUploading();
+    /// 取消上传
+    void CancelUpload();
+    /// 暂停上传
+    void PauseUpload();
+    /// 恢复上传
+    void ResumeUpload();
  
 private:
     

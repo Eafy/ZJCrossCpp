@@ -25,6 +25,14 @@ CFTPClient::~CFTPClient()
         delete (CThreadPool *)m_pThreadPool;
         m_pThreadPool = nullptr;
     }
+    if (m_pDownloader) {
+        delete m_pDownloader;
+        m_pDownloader = nullptr;
+    }
+    if (m_pUploader) {
+        delete m_pUploader;
+        m_pUploader = nullptr;
+    }
 }
 
 bool CFTPClient::ConfigUserInfo(const std::string domain, int port, const std::string userName, const std::string password)
@@ -75,6 +83,7 @@ void CFTPClient::CheckFilesInfo(std::string sPath, std::string strFileListStr, s
                     fileInfo.time = sDate;
                     fileInfo.fileSize = atol(sSize.c_str());
                     fileInfo.fileName = sName;
+                    fileInfo.fileDir = sPath;
                     fileInfo.filePath = sPath + sName;
                     
                     fileInfoList.push_back(fileInfo);
@@ -97,6 +106,7 @@ void CFTPClient::CheckFilesInfo(std::string sPath, std::string strFileListStr, s
                         } else {
                             fileInfo.fileName = listItem.back();
                         }
+                        fileInfo.fileDir = sPath;
                         fileInfo.filePath = sPath + fileInfo.fileName;
                     }
                 }
@@ -108,7 +118,7 @@ void CFTPClient::CheckFilesInfo(std::string sPath, std::string strFileListStr, s
 
 #pragma mark -
 
-void CFTPClient::QueryAllFiles(const std::string path, std::function<void(std::list<CFTPClient::FileInfo> list)> pCallback)
+void CFTPClient::QueryFilesASync(const std::string path, std::function<void(std::list<CFTPClient::FileInfo> list)> pCallback)
 {
     ((CThreadPool *)m_pThreadPool)->AddTask([path, pCallback](CFTPClient *self) {
         CNetRequest request(self, (CNetRequest::MODE_TYPE)(CNetRequest::MODE_TYPE_FTP | CNetRequest::MODE_TYPE_CUSTOMR));
@@ -129,8 +139,31 @@ void CFTPClient::QueryAllFiles(const std::string path, std::function<void(std::l
         } else {
             CPrintfW("Failed to query: %s", sPath.c_str());
         }
-        pCallback(list);
+        if (pCallback) pCallback(list);
     }, this);
+}
+
+std::list<CFTPClient::FileInfo> CFTPClient::QueryFilesSync(const std::string path)
+{
+    CNetRequest request(this, (CNetRequest::MODE_TYPE)(CNetRequest::MODE_TYPE_FTP | CNetRequest::MODE_TYPE_CUSTOMR));
+    request.ConfigURL(m_sUrl);
+    request.ConfigUserInfo(m_sUserName, m_sPassword);
+    
+    std::string sPath = CString::AppendComponentForPath(path, "");
+    request.AddHeader((isUseListCmd ? "LIST " : "MLSD ") + sPath);
+    
+    long ret = 0;
+    request.Request([&ret](void *userData, long code, std::string header, std::string ctx, std::string err) {
+        ret = code;
+    });
+    
+    std::list<FileInfo> list;
+    if (ret == 0) {
+        CheckFilesInfo(sPath, request.GetBoby(), list);
+    } else {
+        CPrintfW("Failed to query: %s", sPath.c_str());
+    }
+    return list;
 }
 
 bool CFTPClient::IsExist(const std::string path, bool isDir)
@@ -252,6 +285,8 @@ bool CFTPClient::MoveFile(const std::string fromPath, const std::string toPath)
     return ret == 0;
 }
 
+#pragma mark -
+
 bool CFTPClient::DownloadFile(const std::string url, const std::string fileDir, const std::string fileName, int timeout, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pReqsCallback, std::function<void(const std::string url, long long dlTotal, long long dlNow)> pProgessCallback)
 {
     if (!m_pDownloader) {
@@ -271,6 +306,33 @@ bool CFTPClient::DownloadFile(const std::string url, const std::string fileDir, 
     return true;
 }
 
+bool CFTPClient::IsDownloading() {
+    if (m_pDownloader) {
+        return m_pDownloader->IsDownloading();
+    }
+    return false;
+}
+
+void CFTPClient::CancelDownload() {
+    if (m_pDownloader) {
+        return m_pDownloader->Cancel();
+    }
+}
+
+void CFTPClient::PauseDownload() {
+    if (m_pDownloader) {
+        return m_pDownloader->Pause();
+    }
+}
+
+void CFTPClient::ResumeDownload() {
+    if (m_pDownloader) {
+        return m_pDownloader->Resume();
+    }
+}
+
+#pragma mark - 
+
 bool CFTPClient::UploadFile(const std::string url, const std::string filePath, int timeout, std::function<void(long statusCode, std::string strRecvBody, const std::string strError)> pReqsCallback, std::function<void(const std::string url, long long dlTotal, long long dlNow)> pProgessCallback)
 {
     if (!m_pUploader) {
@@ -288,6 +350,31 @@ bool CFTPClient::UploadFile(const std::string url, const std::string filePath, i
         }
     });
     return true;
+}
+
+bool CFTPClient::IsUploading() {
+    if (m_pUploader) {
+        return m_pUploader->IsUploading();
+    }
+    return false;
+}
+
+void CFTPClient::CancelUpload() {
+    if (m_pUploader) {
+        return m_pUploader->Resume();
+    }
+}
+
+void CFTPClient::PauseUpload() {
+    if (m_pUploader) {
+        return m_pUploader->Resume();
+    }
+}
+
+void CFTPClient::ResumeUpload() {
+    if (m_pUploader) {
+        return m_pUploader->Resume();
+    }
 }
 
 ZJ_NAMESPACE_END

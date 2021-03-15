@@ -200,7 +200,7 @@ public:
     void Cancel();
     /// 暂停
     void Pause();
-    /// 回复暂停
+    /// 恢复暂停
     void Resume();
     
     /// 正在运行
