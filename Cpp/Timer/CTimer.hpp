@@ -105,19 +105,19 @@ public:
     
 public:
     /// 获取时间戳(毫秒)
-    static uint64_t GetTickCount();
+    static uint64_t Timestamp();
     
     /// 获取格式化时间
-    static std::string GetFormatTime(const std::string sFormat = "%Y-%m-%d %H:%M:%S");
+    static std::string FormatTime(const std::string sFormat = "%Y-%m-%d %H:%M:%S");
 
     /// 获取UTC时间
-    static struct tm *GetUTCTime(long long secTime = 0);
+    static struct tm *UTCTime(long long secTime = 0);
 
     /// 获取UTC时间(秒)
-    static int64_t GetUTCTimeSec();
+    static int64_t UTCTime();
 
     /// 获取与0时区的时差（以秒为单位）
-    static int GetTimeDifference();
+    static int TimeDifFrimGMT();
     
 private:
     void DeleteThread();    //删除任务线程

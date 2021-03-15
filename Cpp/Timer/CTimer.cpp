@@ -91,7 +91,7 @@ void CTimer::DeleteThread()
 
 #pragma mark -
 
-uint64_t CTimer::GetTickCount()
+uint64_t CTimer::Timestamp()
 {
     uint64_t msTime = 0;
 
@@ -115,7 +115,7 @@ uint64_t CTimer::GetTickCount()
     return msTime;
 }
 
-std::string CTimer::GetFormatTime(const std::string sFormat)
+std::string CTimer::FormatTime(const std::string sFormat)
 {
     time_t timep;
     time (&timep);
@@ -126,7 +126,7 @@ std::string CTimer::GetFormatTime(const std::string sFormat)
     return std::string(tmp);
 }
 
-struct tm *CTimer::GetUTCTime(long long secTime)
+struct tm *CTimer::UTCTime(long long secTime)
 {
     time_t timep;
     if (secTime) {
@@ -142,7 +142,7 @@ struct tm *CTimer::GetUTCTime(long long secTime)
     return data;
 }
 
-int64_t CTimer::GetUTCTimeSec()
+int64_t CTimer::UTCTime()
 {
     int64_t msTime = 0;
 
@@ -166,7 +166,7 @@ int64_t CTimer::GetUTCTimeSec()
     return msTime;
 }
 
-int CTimer::GetTimeDifference()
+int CTimer::TimeDifFrimGMT()
 {
     time_t now = time(NULL);
     struct tm *gmTime = gmtime(&now);
