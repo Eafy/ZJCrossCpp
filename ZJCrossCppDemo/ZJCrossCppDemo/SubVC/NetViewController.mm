@@ -29,8 +29,6 @@ using namespace ZJ;
         neb::CJsonObject jsonObj;
         jsonObj.Add("ver", 2);
         jsonObj.Add("method", "sendInstruction");
-        jsonObj.Add("devKey", "cd15d1aba85346128811ae17fc2a2378");
-        jsonObj.Add("devSecret", "a7866ef45d594ea988554fe633fa987e");
         jsonObj.Add("uuid", "983135884798102");
         jsonObj.Add("proNo", 128);
         jsonObj.Add("cmd", "%7B%22appid%22%3A%22IE444A73F0FB100%22%2C%22cmd%22%3A256%7D");
