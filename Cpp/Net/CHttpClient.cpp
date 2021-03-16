@@ -46,6 +46,22 @@ void CHttpClient::Cancel(uint64_t tag)
     ((CThreadPool *)m_pThreadPool)->CancelTask(tag);
 }
 
+void CHttpClient::Pause(uint64_t tag)
+{
+    std::map<uint64_t, CNetRequest *>::iterator iter = m_TaskMap.find(tag);
+    if (iter != m_TaskMap.end()) {
+        iter->second->Pause();
+    }
+}
+
+void CHttpClient::Resume(uint64_t tag)
+{
+    std::map<uint64_t, CNetRequest *>::iterator iter = m_TaskMap.find(tag);
+    if (iter != m_TaskMap.end()) {
+        iter->second->Resume();
+    }
+}
+
 uint64_t CHttpClient::Request(CNetRequest::METHOD_TYPE httpMethod, const std::string url, neb::CJsonObject paramJson, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB)
 {
     uint64_t tag = (uint64_t)&url + (uint64_t)&paramJson + CTimer::Timestamp();

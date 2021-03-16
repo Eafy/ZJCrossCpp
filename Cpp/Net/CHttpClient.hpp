@@ -42,6 +42,12 @@ public:
     /// @param tag 请求标签
     void Cancel(uint64_t tag);
     
+    /// 暂停下载
+    void Pause(uint64_t tag);
+    
+    /// 恢复下载
+    void Resume(uint64_t tag);
+    
     /// 请求
     /// @param httpMethod 请求方式
     /// @param url 请求地址
