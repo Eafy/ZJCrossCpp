@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C03289A25FF45020098C00A /* NetViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C03289925FF45020098C00A /* NetViewController.mm */; };
+		0C0328B725FF46DA0098C00A /* BaseDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0328B625FF46DA0098C00A /* BaseDemoViewController.m */; };
 		0C9F014C25F074C6008E4CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F014B25F074C6008E4CE3 /* AppDelegate.m */; };
-		0C9F014F25F074C6008E4CE3 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F014E25F074C6008E4CE3 /* SceneDelegate.m */; };
-		0C9F015225F074C6008E4CE3 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F015125F074C6008E4CE3 /* ViewController.mm */; };
-		0C9F015525F074C6008E4CE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C9F015325F074C6008E4CE3 /* Main.storyboard */; };
+		0C9F015225F074C6008E4CE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F015125F074C6008E4CE3 /* ViewController.m */; };
 		0C9F015725F074C7008E4CE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C9F015625F074C7008E4CE3 /* Assets.xcassets */; };
 		0C9F015A25F074C7008E4CE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C9F015825F074C7008E4CE3 /* LaunchScreen.storyboard */; };
 		0C9F015D25F074C7008E4CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F015C25F074C7008E4CE3 /* main.m */; };
@@ -38,14 +38,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C03289825FF45020098C00A /* NetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetViewController.h; sourceTree = "<group>"; };
+		0C03289925FF45020098C00A /* NetViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NetViewController.mm; sourceTree = "<group>"; };
+		0C0328B125FF45E70098C00A /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		0C0328B525FF46DA0098C00A /* BaseDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDemoViewController.h; sourceTree = "<group>"; };
+		0C0328B625FF46DA0098C00A /* BaseDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDemoViewController.m; sourceTree = "<group>"; };
+		0C0328C525FF4DA00098C00A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = SOURCE_ROOT; };
 		0C9F014725F074C6008E4CE3 /* ZJCrossCppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJCrossCppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9F014A25F074C6008E4CE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0C9F014B25F074C6008E4CE3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0C9F014D25F074C6008E4CE3 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		0C9F014E25F074C6008E4CE3 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		0C9F015025F074C6008E4CE3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0C9F015125F074C6008E4CE3 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		0C9F015425F074C6008E4CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0C9F015125F074C6008E4CE3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0C9F015625F074C7008E4CE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C9F015925F074C7008E4CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C9F015B25F074C7008E4CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C03289725FF44C50098C00A /* SubVC */ = {
+			isa = PBXGroup;
+			children = (
+				0C03289825FF45020098C00A /* NetViewController.h */,
+				0C03289925FF45020098C00A /* NetViewController.mm */,
+			);
+			path = SubVC;
+			sourceTree = "<group>";
+		};
 		0C9F013E25F074C6008E4CE3 = {
 			isa = PBXGroup;
 			children = (
@@ -113,18 +125,20 @@
 		0C9F014925F074C6008E4CE3 /* ZJCrossCppDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0C03289725FF44C50098C00A /* SubVC */,
 				0C9F014A25F074C6008E4CE3 /* AppDelegate.h */,
 				0C9F014B25F074C6008E4CE3 /* AppDelegate.m */,
-				0C9F014D25F074C6008E4CE3 /* SceneDelegate.h */,
-				0C9F014E25F074C6008E4CE3 /* SceneDelegate.m */,
 				0C9F015025F074C6008E4CE3 /* ViewController.h */,
-				0C9F015125F074C6008E4CE3 /* ViewController.mm */,
-				0C9F015325F074C6008E4CE3 /* Main.storyboard */,
+				0C9F015125F074C6008E4CE3 /* ViewController.m */,
+				0C0328B125FF45E70098C00A /* PrefixHeader.pch */,
 				0C9F015625F074C7008E4CE3 /* Assets.xcassets */,
+				0C0328C525FF4DA00098C00A /* Main.storyboard */,
 				0C9F015825F074C7008E4CE3 /* LaunchScreen.storyboard */,
 				0C9F015B25F074C7008E4CE3 /* Info.plist */,
 				0C9F015C25F074C7008E4CE3 /* main.m */,
 				0CFCC45D25F9F8E500FAE6BA /* ZJCrossCpp.podspec */,
+				0C0328B525FF46DA0098C00A /* BaseDemoViewController.h */,
+				0C0328B625FF46DA0098C00A /* BaseDemoViewController.m */,
 			);
 			path = ZJCrossCppDemo;
 			sourceTree = "<group>";
@@ -272,7 +286,6 @@
 			files = (
 				0C9F015A25F074C7008E4CE3 /* LaunchScreen.storyboard in Resources */,
 				0C9F015725F074C7008E4CE3 /* Assets.xcassets in Resources */,
-				0C9F015525F074C6008E4CE3 /* Main.storyboard in Resources */,
 				0CFCC45E25F9F8E500FAE6BA /* ZJCrossCpp.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,10 +353,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C9F015225F074C6008E4CE3 /* ViewController.mm in Sources */,
+				0C0328B725FF46DA0098C00A /* BaseDemoViewController.m in Sources */,
+				0C9F015225F074C6008E4CE3 /* ViewController.m in Sources */,
 				0C9F014C25F074C6008E4CE3 /* AppDelegate.m in Sources */,
 				0C9F015D25F074C7008E4CE3 /* main.m in Sources */,
-				0C9F014F25F074C6008E4CE3 /* SceneDelegate.m in Sources */,
+				0C03289A25FF45020098C00A /* NetViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,14 +393,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0C9F015325F074C6008E4CE3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0C9F015425F074C6008E4CE3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0C9F015825F074C7008E4CE3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -402,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -518,6 +525,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EB9K2L27BQ;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZJCrossCppDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -538,6 +546,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EB9K2L27BQ;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = ZJCrossCppDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

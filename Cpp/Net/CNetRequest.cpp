@@ -295,6 +295,8 @@ std::string CNetRequest::BuildParameters()
 std::string CNetRequest::BuildURL(const std::string url)
 {
     std::string sURL = url;
+    BuildParameters();
+    
     if (m_nMethodType == METHOD_TYPE_GET) {
         if (m_sParaString.length() > 0) {
             if (sURL.find("?") != std::string::npos) {   //链接已附带参数
@@ -304,7 +306,6 @@ std::string CNetRequest::BuildURL(const std::string url)
             }
         }
     } else {
-        BuildParameters();
         int64_t length = m_sParaString.length();
         if (length > 0) {
             curl_easy_setopt(m_pCurl, CURLOPT_POSTFIELDS, m_sParaString.c_str());

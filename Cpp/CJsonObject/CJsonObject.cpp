@@ -2173,7 +2173,12 @@ bool CJsonObject::Add(uint64 ullValue)
     return(true);
 }
 
-bool CJsonObject::Add(bool bValue, bool bValueAgain)
+bool CJsonObject::Add(bool bValue)
+{
+    return AddBool(bValue);
+}
+
+bool CJsonObject::AddBool(bool bValue)
 {
     cJSONZJ* pFocusData = NULL;
     if (m_pJsonData != NULL)

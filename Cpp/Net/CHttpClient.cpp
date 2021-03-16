@@ -40,12 +40,12 @@ void CHttpClient::Cancel(uint64_t tag) {
     
 }
 
-uint64_t CHttpClient::Request(CNetRequest::METHOD_TYPE httpMethod, const std::string url, neb::CJsonObject paramMap, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB)
+uint64_t CHttpClient::Request(CNetRequest::METHOD_TYPE httpMethod, const std::string url, neb::CJsonObject paramJson, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB)
 {
-    uint64_t tag = ((CThreadPool *)m_pThreadPool)->AddTask([httpMethod, url, paramMap, comCB, failCB, progressCB](CHttpClient *self) {
+    uint64_t tag = ((CThreadPool *)m_pThreadPool)->AddTask([httpMethod, url, paramJson, comCB, failCB, progressCB](CHttpClient *self) {
         CNetRequest request(self);
         request.SetMethodType(httpMethod);
-        request.AddParameter(paramMap);
+        request.AddParameter(paramJson);
         request.SetResponseCallback([comCB, failCB](void *userData, long statusCode, std::string strRecvHeader, std::string strRecvBody, const std::string strError) {
             if (statusCode == 0) {
                 if (comCB) comCB(userData, strRecvBody);

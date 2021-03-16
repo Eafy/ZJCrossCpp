@@ -118,7 +118,8 @@ public:     // method of json array
     bool Add(uint32 uiValue);
     bool Add(int64 llValue);
     bool Add(uint64 ullValue);
-    bool Add(bool bValue, bool bValueAgain);   //bValue为占位用，否则bool类型可能转换为整形
+    bool Add(bool bValue);   //bValue为占位用，否则bool类型可能转换为整形
+    bool AddBool(bool bValue);
     bool Add(float fValue);
     bool Add(double dValue);
     bool AddAsFirst(const CJsonObject& oJsonObject);
