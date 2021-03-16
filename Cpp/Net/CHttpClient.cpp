@@ -8,6 +8,7 @@
 
 #include "CHttpClient.hpp"
 #include "CThreadPool.hpp"
+#include "CTimer.hpp"
 
 ZJ_NAMESPACE_BEGIN
 
@@ -36,13 +37,20 @@ void CHttpClient::CancelAll()
     m_TaskMap.clear();
 }
 
-void CHttpClient::Cancel(uint64_t tag) {
-    
+void CHttpClient::Cancel(uint64_t tag)
+{
+    std::map<uint64_t, CNetRequest *>::iterator iter = m_TaskMap.find(tag);
+    if (iter != m_TaskMap.end()) {
+        iter->second->Cancel();
+    }
+    ((CThreadPool *)m_pThreadPool)->CancelTask(tag);
 }
 
 uint64_t CHttpClient::Request(CNetRequest::METHOD_TYPE httpMethod, const std::string url, neb::CJsonObject paramJson, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB)
 {
-    uint64_t tag = ((CThreadPool *)m_pThreadPool)->AddTask([httpMethod, url, paramJson, comCB, failCB, progressCB](CHttpClient *self) {
+    uint64_t tag = (uint64_t)&url + (uint64_t)&paramJson + CTimer::Timestamp();
+    
+    tag = ((CThreadPool *)m_pThreadPool)->AddTask(tag, [tag, httpMethod, url, paramJson, comCB, failCB, progressCB](CHttpClient *self) {
         CNetRequest request(self);
         request.SetMethodType(httpMethod);
         request.AddParameter(paramJson);
@@ -61,9 +69,9 @@ uint64_t CHttpClient::Request(CNetRequest::METHOD_TYPE httpMethod, const std::st
         });
         
         CNetRequest *p = &request;
-        self->m_TaskMap.insert(std::pair<uint64_t, CNetRequest*>((uint64_t)p, p));
+        self->m_TaskMap.insert(std::pair<uint64_t, CNetRequest*>(tag, p));
         request.Request(url);
-        self->m_TaskMap.erase((uint64_t)p);
+        self->m_TaskMap.erase(tag);
     }, this);
     
     return tag;

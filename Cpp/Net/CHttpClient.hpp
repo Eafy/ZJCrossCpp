@@ -47,7 +47,7 @@ public:
     /// @param comCB 成功回调
     /// @param failCB 失败回调
     /// @param progressCB 进度回调
-    /// @return 请求标签，可用作取消，<=0标识创建失败
+    /// @return 请求标签，可用作取消，==0标识创建失败
     uint64_t Request(CNetRequest::METHOD_TYPE httpMethod, const std::string url, neb::CJsonObject paramJson, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB = nullptr);
     
 private:
