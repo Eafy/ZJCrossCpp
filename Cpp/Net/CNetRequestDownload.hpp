@@ -28,8 +28,8 @@ public:
     
     /// 设置进度回调
     /// @param pCallback 回调
-    void SetProgessCallback(std::function<void(const std::string url, long long dlTotal, long long dlNow)> pCallback) {
-        m_pProgessCallback = pCallback;
+    void SetProgressCallback(std::function<void(const std::string url, long long dlTotal, long long dlNow)> pCallback) {
+        m_pProgressCallback = pCallback;
     }
     
     /// 是否正在下载
@@ -46,7 +46,7 @@ private:
     int64_t m_nFirstProgress = 0;       //已下载进度
     int64_t m_nCurrentProgress = 0;     //当前进度
     int64_t m_nTotalProgress = 0;       //总进度
-    std::function<void(const std::string url, long long dlTotal, long long dlNow)> m_pProgessCallback = nullptr;
+    std::function<void(const std::string url, long long dlTotal, long long dlNow)> m_pProgressCallback = nullptr;
 };
 
 ZJ_NAMESPACE_END

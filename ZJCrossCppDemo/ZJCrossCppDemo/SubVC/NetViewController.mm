@@ -16,7 +16,6 @@ using namespace ZJ;
 @interface NetViewController ()
 
 @property (nonatomic,assign) CHttpClient *httpClient;
-@property (nonatomic,assign) CNetRequestDownload *requestDownload;
 
 @end
 
@@ -25,7 +24,6 @@ using namespace ZJ;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _httpClient = new CHttpClient();
-    
     
     ZJButton *btn = [self btnWithTitle:@"GET" preBtn:nil handle:^(id  _Nonnull x) {
         neb::CJsonObject jsonObj;
@@ -45,18 +43,33 @@ using namespace ZJ;
         }, [](void *userData, long statusCode, const std::string strError) {
             NSLog(@"Get Fail[%ld]：%s", statusCode, strError.c_str());
         });
-        
     }];
     [self.view addSubview:btn];
     
+    
     btn = [self btnWithTitle:@"POST" preBtn:btn handle:^(id  _Nonnull x) {
+        neb::CJsonObject jsonObj;
+        jsonObj.Add("email", "lizhijian_21@163.com");
+        jsonObj.Add("pass", "123456");
         
+        self.httpClient->Request(CNetRequest::METHOD_TYPE_POST, "http://api.securesmart.cn/cameraServer2/v2/userLogin.api", jsonObj, [](void *userData, const std::string strContent) {
+            NSLog(@"Post Success：%s", strContent.c_str());
+        }, [](void *userData, long statusCode, const std::string strError) {
+            NSLog(@"Post Fail[%ld]：%s", statusCode, strError.c_str());
+        });
     }];
     [self.view addSubview:btn];
     
     
     btn = [self btnWithTitle:@"DOWNLOAD" preBtn:btn handle:^(id  _Nonnull x) {
-        
+            NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).firstObject;
+        self.httpClient->Download("http://trace.eas.asu.edu/yuv/bridge-close/bridge-close_cif.7z", path.UTF8String, "", [](void *userData, const std::string strContent) {
+            NSLog(@"Download Success：%s", strContent.c_str());
+        }, [](void *userData, long statusCode, const std::string strError) {
+            NSLog(@"Download Fail[%ld]：%s", statusCode, strError.c_str());
+        }, [](void *userData, unsigned long long totalSize, unsigned long long currentSize) {
+            NSLog(@"Download Progress %lld:%lld", totalSize, currentSize);
+        });
     }];
     [self.view addSubview:btn];
     
@@ -64,16 +77,6 @@ using namespace ZJ;
         
     }];
     [self.view addSubview:btn];
-
-//    self.requestPost = new CNetRequestPost();
-//        self.requestPost->AddParameter("email", "lizhijian_21@163.com");
-//        self.requestPost->AddParameter("pass", "123456");
-//        self.requestPost->Start("http://api.securesmart.cn/cameraServer2/v2/userLogin.api");
-    
-//    self.requestDownload = new CNetRequestDownload();
-//    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true).firstObject;
-//    NSString *fileDir = [NSString stringWithFormat:@"%@/TEST.zip", path];
-//    self.requestDownload->Start("www.caimomo.com.cn/download/oem/cy.zip", fileDir.UTF8String);
 }
 
 

@@ -77,4 +77,61 @@ uint64_t CHttpClient::Request(CNetRequest::METHOD_TYPE httpMethod, const std::st
     return tag;
 }
 
+uint64_t CHttpClient::Download(const std::string url, const std::string fileDir, const std::string fileName, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB)
+{
+    uint64_t tag = (uint64_t)&url + (uint64_t)&fileDir + CTimer::Timestamp();
+    
+    tag = ((CThreadPool *)m_pThreadPool)->AddTask(tag, [tag, url, fileDir, fileName, comCB, failCB, progressCB](CHttpClient *self) {
+        CNetRequestDownload request(self);
+        request.SetResponseCallback([comCB, failCB](void *userData, long statusCode, std::string strRecvHeader, std::string strRecvBody, const std::string strError) {
+            if (statusCode == 0) {
+                if (comCB) comCB(userData, strRecvBody);
+            } else {
+                if (failCB) failCB(userData, statusCode, strError);
+            }
+        });
+        
+        request.SetProgressCallback([progressCB, self](const std::string url, long long dlTotal, long long dlNow) {
+            if (progressCB) {
+               progressCB(self, dlTotal, dlNow);
+            }
+        });
+        
+        CNetRequest *p = &request;
+        self->m_TaskMap.insert(std::pair<uint64_t, CNetRequest*>(tag, p));
+        request.Start(url, fileDir, fileName);
+        self->m_TaskMap.erase(tag);
+    }, this);
+    
+    return tag;
+}
+
+uint64_t CHttpClient::Upload(const std::string url, const std::string filePath, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB)
+{
+    uint64_t tag = (uint64_t)&url + (uint64_t)&filePath + CTimer::Timestamp();
+    
+    tag = ((CThreadPool *)m_pThreadPool)->AddTask(tag, [tag, url, filePath, comCB, failCB, progressCB](CHttpClient *self) {
+        CNetRequestDownload request(self);
+        request.SetResponseCallback([comCB, failCB](void *userData, long statusCode, std::string strRecvHeader, std::string strRecvBody, const std::string strError) {
+            if (statusCode == 0) {
+                if (comCB) comCB(userData, strRecvBody);
+            } else {
+                if (failCB) failCB(userData, statusCode, strError);
+            }
+        });
+        request.SetProgressCallback([progressCB, self](const std::string url, long long ulTotal, long long ulNow) {
+            if (progressCB) {
+               progressCB(self, ulTotal, ulNow);
+            }
+        });
+        
+        CNetRequest *p = &request;
+        self->m_TaskMap.insert(std::pair<uint64_t, CNetRequest*>(tag, p));
+        request.Start(url, filePath);
+        self->m_TaskMap.erase(tag);
+    }, this);
+    
+    return tag;
+}
+
 ZJ_NAMESPACE_END

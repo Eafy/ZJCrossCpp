@@ -296,7 +296,7 @@ bool CFTPClient::DownloadFile(const std::string url, const std::string fileDir, 
     }
     m_pDownloader->ConfigUserInfo(m_sUserName, m_sPassword);
     m_pDownloader->SetRequestTimeout(timeout);
-    m_pDownloader->SetProgessCallback(pProgessCallback);
+    m_pDownloader->SetProgressCallback(pProgessCallback);
     
     m_pDownloader->Start(CString::AppendComponentForPath(m_sUrl, url), fileDir, fileName, [pReqsCallback](void *userData, long code, std::string header, std::string ctx, std::string err) {
         if (pReqsCallback) {
@@ -342,7 +342,7 @@ bool CFTPClient::UploadFile(const std::string url, const std::string filePath, i
     }
     m_pUploader->ConfigUserInfo(m_sUserName, m_sPassword);
     m_pUploader->SetRequestTimeout(timeout);
-    m_pUploader->SetProgessCallback(pProgessCallback);
+    m_pUploader->SetProgressCallback(pProgessCallback);
     
     m_pUploader->Start(CString::AppendComponentForPath(m_sUrl, url), filePath, [pReqsCallback](void *userData, long code, std::string header, std::string ctx, std::string err) {
         if (pReqsCallback) {

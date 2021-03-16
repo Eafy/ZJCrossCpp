@@ -14,6 +14,8 @@
 #include <map>
 #include "CSingleton.hpp"
 #include "CNetRequest.hpp"
+#include "CNetRequestUpload.hpp"
+#include "CNetRequestDownload.hpp"
 
 ZJ_NAMESPACE_BEGIN
 
@@ -49,6 +51,23 @@ public:
     /// @param progressCB 进度回调
     /// @return 请求标签，可用作取消，==0标识创建失败
     uint64_t Request(CNetRequest::METHOD_TYPE httpMethod, const std::string url, neb::CJsonObject paramJson, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB = nullptr);
+    
+    /// 下载
+    /// @param url 下载地址
+    /// @param fileDir 本地保存的文件夹
+    /// @param fileName 本地文件名称
+    /// @param comCB 完成回调
+    /// @param failCB 失败回调
+    /// @param progressCB 进度回调
+    uint64_t Download(const std::string url, const std::string fileDir, const std::string fileName, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB);
+    
+    /// 上传
+    /// @param url 服务器上传地址
+    /// @param filePath 本地上传的文件地址
+    /// @param comCB 完成回调
+    /// @param failCB 失败回调
+    /// @param progressCB 进度回调
+    uint64_t Upload(const std::string url, const std::string filePath, OnHttpClientCompletionCB comCB, OnHttpClientFailureCB failCB, OnHttpClientProgressCB progressCB);
     
 private:
     void *m_pUserData = nullptr;

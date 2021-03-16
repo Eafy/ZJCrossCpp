@@ -95,8 +95,8 @@ void CNetRequestUpload::OnProgressResult(void *userData, long long dlTotal, long
     if (ulNow == 0) return;
     
     m_nCurrentProgress = m_nFirstProgress + ulNow;
-    if (m_pProgessCallback) {
-        m_pProgessCallback(GetUrl(), m_nTotalProgress, m_nCurrentProgress);
+    if (m_pProgressCallback) {
+        m_pProgressCallback(GetUrl(), m_nTotalProgress, m_nCurrentProgress);
     } else {
         CPrintfW("Upload: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
     }

@@ -116,8 +116,8 @@ void CNetRequestDownload::OnProgressResult(void *userData, long long dlTotal, lo
     }
     
     m_nCurrentProgress = m_nFirstProgress + dlNow;
-    if (m_pProgessCallback) {
-        m_pProgessCallback(GetUrl(), m_nTotalProgress, m_nCurrentProgress);
+    if (m_pProgressCallback) {
+        m_pProgressCallback(GetUrl(), m_nTotalProgress, m_nCurrentProgress);
     } else {
         CPrintfW("Download: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
     }
