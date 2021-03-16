@@ -9,12 +9,13 @@ Pod::Spec.new do |s|
   s.author       = "Eafy"
   s.platform     = :ios, "9.0"
   s.requires_arc = true
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
   s.source       = { :git => "https://github.com/Eafy/ZJCrossCpp.git", :tag => "v#{s.version}" }
+  s.vendored_libraries = 'Libs/iOS/**/*.a'
+  s.resources = 'Libs/iOS/**/*.a'
   s.libraries = 'c++'
   s.dependency 'ZJLog', '1.1.6'
-  s.vendored_libraries = "Libs/iOS/**/*.a"
-  s.resources = "Libs/iOS/**/*.a"
 
   s.source_files  = "Libs/iOS/**/*.{h,hpp}", "Cpp/**/*.{h,hpp,c,cpp}", "Cpp/**/*.{h,hpp,c,cpp}"
   s.public_header_files = "Libs/iOS/**/*.{h,hpp}", "Cpp/**/*.{h,hpp}"
