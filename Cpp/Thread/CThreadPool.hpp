@@ -53,6 +53,7 @@ public:
         return 0;
     }
     
+    /// 仅执行1次的任务（设计有问题，暂时无啥用）
     template<typename callable, typename... arguments>
     void OnceTask(callable&& func, arguments&&... args) {
         std::function<typename std::result_of<callable(arguments...)>::type()> task(std::bind(std::forward<callable>(func), std::forward<arguments>(args)...));
