@@ -32,7 +32,7 @@ int64_t CNetRequestUpload::QueryFileUploadedSize(const std::string url)
         curl_easy_setopt(cUrl, CURLOPT_NOBODY, 1L);     //查询不附带文件内容
         CURLcode ret = curl_easy_perform(cUrl);
         if (ret != CURLE_OK) {
-            CPrintfW("Error[%d] reading uploaded file size.", ret);
+            CLogW("Error[%d] reading uploaded file size.", ret);
         }
         length = m_nContentLength;
         Cancel();
@@ -76,7 +76,7 @@ void CNetRequestUpload::Start(const std::string url, const std::string filePath,
             curl_easy_setopt(cUrl, CURLOPT_APPEND, 0L);
         }
         
-        CPrintfD("Upload local path: %s", filePath.c_str());
+        CLogD("Upload local path: %s", filePath.c_str());
         Request(pCallback);
         fclose(file);
     }
@@ -98,7 +98,7 @@ void CNetRequestUpload::OnProgressResult(void *userData, long long dlTotal, long
     if (m_pProgressCallback) {
         m_pProgressCallback(GetUrl(), m_nTotalProgress, m_nCurrentProgress);
     } else {
-        CPrintfW("Upload: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
+        CLogW("Upload: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
     }
 }
 

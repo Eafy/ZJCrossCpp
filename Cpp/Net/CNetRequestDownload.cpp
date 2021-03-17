@@ -34,7 +34,7 @@ int64_t CNetRequestDownload::QueryFileSize(const std::string url)
         curl_easy_setopt(cUrl, CURLOPT_NOBODY, 1L);     //查询不附带文件内容
         CURLcode ret = curl_easy_perform(cUrl);
         if (ret != CURLE_OK) {
-            CPrintfW("Error[%d] reading uploaded file size.", ret);
+            CLogW("Error[%d] reading uploaded file size.", ret);
         }
         length = m_nContentLength;
         Cancel();
@@ -97,7 +97,7 @@ void CNetRequestDownload::Start(const std::string url, const std::string fileDir
         curl_easy_setopt(cUrl, CURLOPT_NOBODY, 0L);      //附带文件内容
 //        curl_easy_setopt(cUrl, CURLOPT_MAX_RECV_SPEED_LARGE, 819200L);      //最大速度，单位bytes/s
         
-        CPrintfD("Download local path: %s", filePath.c_str());
+        CLogD("Download local path: %s", filePath.c_str());
         Request(pCallback);
         fclose(file);
     }
@@ -119,7 +119,7 @@ void CNetRequestDownload::OnProgressResult(void *userData, long long dlTotal, lo
     if (m_pProgressCallback) {
         m_pProgressCallback(GetUrl(), m_nTotalProgress, m_nCurrentProgress);
     } else {
-        CPrintfW("Download: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
+        CLogW("Download: %s -> %lld:%lld", GetUrl().c_str(), m_nTotalProgress, m_nCurrentProgress);
     }
 }
 

@@ -137,7 +137,7 @@ void CFTPClient::QueryFilesASync(const std::string path, std::function<void(std:
         if (ret == 0) {
             self->CheckFilesInfo(sPath, request.GetBoby(), list);
         } else {
-            CPrintfW("Failed to query: %s", sPath.c_str());
+            CLogW("Failed to query: %s", sPath.c_str());
         }
         if (pCallback) pCallback(list);
     }, this);
@@ -161,7 +161,7 @@ std::list<CFTPClient::FileInfo> CFTPClient::QueryFilesSync(const std::string pat
     if (ret == 0) {
         CheckFilesInfo(sPath, request.GetBoby(), list);
     } else {
-        CPrintfW("Failed to query: %s", sPath.c_str());
+        CLogW("Failed to query: %s", sPath.c_str());
     }
     return list;
 }

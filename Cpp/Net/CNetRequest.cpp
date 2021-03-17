@@ -99,9 +99,9 @@ bool CNetRequest::IsRunning() {
 void CNetRequest::ShowRequestBeforeInfo()
 {
     if (m_bIsShowRequestLog) {
-        CPrintfI("Result Start URL:  %s\n", m_sUrl.c_str());   //请求链接
+        CLogI("Result Start URL:  %s\n", m_sUrl.c_str());   //请求链接
         for (curl_slist *header = (curl_slist *)m_pRequestHeader; header != nullptr; ) {    //请求头
-            CPrintfI("%s\n", header->data);
+            CLogI("%s\n", header->data);
             header = header->next;
         }
     }
@@ -111,23 +111,23 @@ void CNetRequest::ShowRequestBeforeInfo()
 void CNetRequest::ShowRequestAfterInfo()
 {
     if (m_bIsShowRequestLog) {
-        CPrintfI("Result End URL: %s\n", m_sUrl.c_str());
+        CLogI("Result End URL: %s\n", m_sUrl.c_str());
         
         char *infoStr = NULL;
         long port = 0;
         CURLcode code = curl_easy_getinfo(m_pCurl, CURLINFO_PRIMARY_IP, &infoStr);
         code = curl_easy_getinfo(m_pCurl, CURLINFO_PRIMARY_PORT, &port);
         if (code == CURLE_OK && infoStr) {
-            CPrintfI("Host IP:%s Port:%ld\n", infoStr, port);
+            CLogI("Host IP:%s Port:%ld\n", infoStr, port);
         }
         
         code = curl_easy_getinfo(m_pCurl, CURLINFO_LOCAL_IP, &infoStr);
         code = curl_easy_getinfo(m_pCurl, CURLINFO_LOCAL_PORT, &port);
         if (code == CURLE_OK && infoStr) {
-            CPrintfI("Local IP:%s Port:%ld\n", infoStr, port);
+            CLogI("Local IP:%s Port:%ld\n", infoStr, port);
         }
         
-        CPrintfI("Response: \n%s\n", m_sResponseBuf.c_str());
+        CLogI("Response: \n%s\n", m_sResponseBuf.c_str());
     }
 }
 
@@ -189,7 +189,7 @@ void CNetRequest::ConfigHeaders()
         
         int code = curl_easy_setopt(m_pCurl, type, headCmd);
         if (code != CURLE_OK) {
-            CPrintfE("Failed to config header field:%s", m_pErrorBuf);
+            CLogE("Failed to config header field:%s", m_pErrorBuf);
         }
     }
 }
@@ -316,7 +316,7 @@ std::string CNetRequest::BuildURL(const std::string url)
     curl_easy_setopt(m_pCurl, CURLOPT_ERRORBUFFER, m_pErrorBuf);
     CURLcode code = curl_easy_setopt(m_pCurl, CURLOPT_URL, sURL.c_str());
     if (code != CURLE_OK) {
-        CPrintfE("Failed to set url:%s, error:%s", sURL.c_str(), m_pErrorBuf);
+        CLogE("Failed to set url:%s, error:%s", sURL.c_str(), m_pErrorBuf);
         RemoveCurl(&m_pCurl);
         OnRequestResult(m_pUserData, ERR_URL_INVALID, "", "", sURL);
         return "";
@@ -363,7 +363,7 @@ CURL *CNetRequest::ConfigURL(const std::string url, bool bProgress)
     if (!m_pCurl) {
         m_pCurl = curl_easy_init();
         if (m_pCurl == nullptr) {
-            CPrintfE("Failed to create CURL connection");
+            CLogE("Failed to create CURL connection");
             OnRequestResult(m_pUserData, ERR_OBJ_INIT_FAILED, "", "", "");
             return nullptr;
         }
@@ -460,7 +460,7 @@ void CNetRequest::Request(OnNetRequestResponseCB pCallback)
             }
             OnRequestResult(m_pUserData, code, m_sResponseHeader, m_sResponseBody, errorStr);
         } else {
-            CPrintfD("Cancel Result: %s", m_sUrl.c_str());
+            CLogD("Cancel Result: %s", m_sUrl.c_str());
             code = ERR_CANCEL;
         }
         Clear();
@@ -526,7 +526,7 @@ void CNetRequest::OnRequestResult(void *userData, long statusCode, std::string s
     if (m_pResponseCallback) {
         m_pResponseCallback(userData, statusCode, strRecvHeader, strRecvBody, strError);
     } else {
-        CPrintfW("No set receive proxy interface: %s, StatusCode: %ld, RespCode:%ld, Header: %s, Body: %s, Error: %s", m_sUrl.c_str(), statusCode, m_nRespCode, strRecvHeader.c_str(), strRecvBody.c_str(), strError.c_str());
+        CLogW("No set receive proxy interface: %s, StatusCode: %ld, RespCode:%ld, Header: %s, Body: %s, Error: %s", m_sUrl.c_str(), statusCode, m_nRespCode, strRecvHeader.c_str(), strRecvBody.c_str(), strError.c_str());
     }
 }
 
@@ -534,7 +534,7 @@ void CNetRequest::OnProgressResult(void *userData, long long dlTotal, long long 
     if (m_pProgressCallback) {
         m_pProgressCallback(userData, dlTotal, dlNow, ulTotal, ulNow);
     } else {
-        CPrintfW("No set progress proxy interface: %s, download: %lld/%lld upload: %lld/%lld", m_sUrl.c_str(), dlTotal, dlNow, ulTotal, ulNow);
+        CLogW("No set progress proxy interface: %s, download: %lld/%lld upload: %lld/%lld", m_sUrl.c_str(), dlTotal, dlNow, ulTotal, ulNow);
     }
 }
 
