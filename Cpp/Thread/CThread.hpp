@@ -37,7 +37,7 @@ public:
         
         Start();
     }
-    void Cancel();      //标志线程准备取消(实际内部若已运行，可能无法取消)
+    void Cancel();      //标志线程准备取消(实际内部若已运行，无法取消)
     void Sleep(long msTime);    //休眠等待msTime毫秒
     void Wakeup();      //唤醒
     void WakeupAll();   //唤醒所有

@@ -19,7 +19,7 @@ ZJ_NAMESPACE_BEGIN
 class CThreadPool: public CBaseThreadPool
 {
 public:
-    CThreadPool(u_int32_t nThreads = 32): CBaseThreadPool(nThreads) {};   //初始化线程池(默认线程池最大64个线程)
+    CThreadPool(u_int32_t nThreads = 32): CBaseThreadPool(nThreads) {};   //初始化线程池
     virtual ~CThreadPool() {};
     DECLARE_SINGLETON_CLASS(CThreadPool);
     
@@ -54,18 +54,14 @@ public:
     }
     
     template<typename callable, typename... arguments>
-    uint64_t OnceTask(callable&& func, arguments&&... args) {
+    void OnceTask(callable&& func, arguments&&... args) {
         std::function<typename std::result_of<callable(arguments...)>::type()> task(std::bind(std::forward<callable>(func), std::forward<arguments>(args)...));
 
         if (!IsExit()) {
             CThreadTask *threadTask = new CThreadTask();  //产生一个新的任务
             threadTask->m_Func = task;
             _AddTask(threadTask);
-            
-            return threadTask->m_nTag;
         }
-        
-        return 0;
     }
 
     /**
